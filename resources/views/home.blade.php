@@ -96,7 +96,7 @@
     }
 
     .commitment-section {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: #1C4C96;
         color: white;
         padding: 5rem 2rem;
         text-align: center;
