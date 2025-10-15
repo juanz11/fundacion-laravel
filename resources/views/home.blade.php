@@ -12,7 +12,12 @@
         text-align: center;
         background-position: center;
         background-repeat: no-repeat;
+        background-size: cover;
         min-height: 500px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
     .hero-home h1 {
@@ -23,8 +28,40 @@
 
     .hero-home p {
         font-size: 1.3rem;
+        margin-bottom: 2rem;
         max-width: 800px;
-        margin: 0 auto 2rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    @media (max-width: 768px) {
+        .hero-home {
+            padding: 6rem 1.5rem;
+            min-height: 400px;
+        }
+
+        .hero-home h1 {
+            font-size: 2rem;
+        }
+
+        .hero-home p {
+            font-size: 1.1rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .hero-home {
+            padding: 4rem 1rem;
+            min-height: 350px;
+        }
+
+        .hero-home h1 {
+            font-size: 1.5rem;
+        }
+
+        .hero-home p {
+            font-size: 1rem;
+        }
     }
 
     .services-section {

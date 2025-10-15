@@ -12,6 +12,7 @@
         text-align: center;
         background-position: center;
         background-repeat: no-repeat;
+        background-size: cover;
         min-height: 350px;
         display: flex;
         flex-direction: column;
@@ -21,6 +22,32 @@
     .page-header h1 {
         font-size: 3rem;
         margin-bottom: 1rem;
+    }
+
+    @media (max-width: 768px) {
+        .page-header {
+            padding: 4rem 1.5rem;
+            min-height: 300px;
+        }
+
+        .page-header h1 {
+            font-size: 2rem;
+        }
+
+        .page-header p {
+            font-size: 1rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .page-header {
+            padding: 3rem 1rem;
+            min-height: 250px;
+        }
+
+        .page-header h1 {
+            font-size: 1.5rem;
+        }
     }
 
     .programs-section {
