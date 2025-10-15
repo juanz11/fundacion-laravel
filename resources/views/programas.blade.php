@@ -5,10 +5,17 @@
 @section('styles')
 <style>
     .page-header {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, rgba(28, 76, 150, 0.75) 0%, rgba(28, 76, 150, 0.75) 100%),
+                    url('{{ asset('images/banner-hero.png') }}') center/cover;
         color: white;
-        padding: 4rem 2rem;
+        padding: 6rem 2rem;
         text-align: center;
+        background-position: center;
+        background-repeat: no-repeat;
+        min-height: 350px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 
     .page-header h1 {
@@ -123,7 +130,7 @@
 <!-- Programs Section -->
 <section class="programs-section">
     <!-- Programa 1: Prevención -->
-    <div class="program-card">
+    <div class="program-card" id="prevencion">
         <div class="program-header">
             <div class="program-icon">
                 <i class="fas fa-shield-alt"></i>
@@ -156,7 +163,7 @@
     </div>
 
     <!-- Programa 2: Intervención Inmediata -->
-    <div class="program-card">
+    <div class="program-card" id="intervencion">
         <div class="program-header">
             <div class="program-icon">
                 <i class="fas fa-ambulance"></i>
@@ -189,7 +196,7 @@
     </div>
 
     <!-- Programa 3: Postvención -->
-    <div class="program-card">
+    <div class="program-card" id="postvencion">
         <div class="program-header">
             <div class="program-icon">
                 <i class="fas fa-hands-helping"></i>

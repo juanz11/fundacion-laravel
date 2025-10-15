@@ -40,52 +40,105 @@
         /* Header Styles */
         .header {
             background: #fff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.08);
             position: sticky;
             top: 0;
             z-index: 1000;
         }
 
         .header-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 1rem 2rem;
+            padding: 0.5rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo img {
-            height: 60px;
+            height: 80px;
             width: auto;
         }
 
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 0;
             align-items: center;
+            margin: 0;
         }
 
-        .nav-menu a {
+        .nav-menu > li {
+            position: relative;
+        }
+
+        .nav-menu > li > a {
             text-decoration: none;
             color: var(--text-dark);
             font-weight: 500;
+            font-size: 0.95rem;
+            padding: 1.5rem 1.2rem;
+            display: block;
             transition: color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .nav-menu a:hover {
+        .nav-menu > li > a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Submenu */
+        .nav-menu .submenu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 280px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            z-index: 1000;
+        }
+
+        .nav-menu li:hover .submenu {
+            display: block;
+        }
+
+        .nav-menu .submenu li {
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .nav-menu .submenu li:last-child {
+            border-bottom: none;
+        }
+
+        .nav-menu .submenu a {
+            padding: 0.8rem 1.2rem;
+            display: block;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .nav-menu .submenu a:hover {
+            background: #f9f9f9;
             color: var(--primary-color);
         }
 
         .btn-contact {
             background: var(--primary-color);
-            color: white;
-            padding: 0.75rem 1.5rem;
+            color: white !important;
+            padding: 0.6rem 1.5rem;
             border-radius: 5px;
             text-decoration: none;
             font-weight: 600;
             transition: background 0.3s;
+            margin-left: 1rem;
+            font-size: 0.85rem;
         }
 
         .btn-contact:hover {
@@ -99,6 +152,7 @@
             border: none;
             font-size: 1.5rem;
             cursor: pointer;
+            color: var(--text-dark);
         }
 
         /* Hero Section */
@@ -263,7 +317,14 @@
                 <ul class="nav-menu">
                     <li><a href="{{ url('/') }}">Inicio</a></li>
                     <li><a href="{{ url('/quienes-somos') }}">Quiénes Somos</a></li>
-                    <li><a href="{{ url('/programas') }}">Programas</a></li>
+                    <li>
+                        <a href="{{ url('/programas') }}">Programas</a>
+                        <ul class="submenu">
+                            <li><a href="{{ url('/programas#prevencion') }}">Programas y Planes de Prevención</a></li>
+                            <li><a href="{{ url('/programas#intervencion') }}">Programas y Planes de Intervención Inmediata</a></li>
+                            <li><a href="{{ url('/programas#postvencion') }}">Programas y Planes de Postvención</a></li>
+                        </ul>
+                    </li>
                     <li><a href="{{ url('/contacto') }}">Contacto</a></li>
                     <li><a href="https://wa.me/584144008240?text=Hola%20necesito%20mas%20informacion" class="btn-contact">Contáctanos</a></li>
                 </ul>

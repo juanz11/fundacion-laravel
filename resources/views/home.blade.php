@@ -5,11 +5,14 @@
 @section('styles')
 <style>
     .hero-home {
-        background: linear-gradient(135deg, rgba(102, 126, 234, 0.9) 0%, rgba(118, 75, 162, 0.9) 100%),
-                    url('https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1200') center/cover;
+        background: linear-gradient(135deg, rgba(28, 76, 150, 0.75) 0%, rgba(28, 76, 150, 0.75) 100%),
+                    url('{{ asset('images/banner-hero.png') }}') center/cover;
         color: white;
-        padding: 6rem 2rem;
+        padding: 10rem 2rem;
         text-align: center;
+        background-position: center;
+        background-repeat: no-repeat;
+        min-height: 500px;
     }
 
     .hero-home h1 {

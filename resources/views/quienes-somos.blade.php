@@ -5,10 +5,17 @@
 @section('styles')
 <style>
     .page-header {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, rgba(28, 76, 150, 0.75) 0%, rgba(28, 76, 150, 0.75) 100%),
+                    url('{{ asset('images/banner-hero.png') }}') center/cover;
         color: white;
-        padding: 4rem 2rem;
+        padding: 6rem 2rem;
         text-align: center;
+        background-position: center;
+        background-repeat: no-repeat;
+        min-height: 350px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 
     .page-header h1 {
