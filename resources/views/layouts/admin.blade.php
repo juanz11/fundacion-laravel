@@ -376,6 +376,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ route('admin.media.index') }}" class="{{ request()->routeIs('admin.media.*') ? 'active' : '' }}">
+                        <i class="fas fa-photo-video"></i>
+                        <span>Medios</span>
+                    </a>
+                </li>
+                <li>
                     <a href="{{ url('/') }}">
                         <i class="fas fa-globe"></i>
                         <span>Ver Sitio Web</span>

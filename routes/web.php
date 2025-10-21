@@ -37,4 +37,11 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('/users', [AdminController::class, 'users'])->name('users');
     Route::patch('/users/{user}/role', [AdminController::class, 'updateUserRole'])->name('users.update-role');
     Route::delete('/users/{user}', [AdminController::class, 'deleteUser'])->name('users.delete');
+    
+    // Rutas de medios
+    Route::get('/media', [\App\Http\Controllers\MediaController::class, 'index'])->name('media.index');
+    Route::post('/media/upload', [\App\Http\Controllers\MediaController::class, 'upload'])->name('media.upload');
+    Route::patch('/media/{media}', [\App\Http\Controllers\MediaController::class, 'update'])->name('media.update');
+    Route::delete('/media/{media}', [\App\Http\Controllers\MediaController::class, 'destroy'])->name('media.destroy');
+    Route::get('/media/{media}/download', [\App\Http\Controllers\MediaController::class, 'download'])->name('media.download');
 });

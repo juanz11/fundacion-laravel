@@ -46,6 +46,48 @@
     </div>
 </div>
 
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-icon blue">
+            <i class="fas fa-photo-video"></i>
+        </div>
+        <div class="stat-info">
+            <h3>{{ \App\Models\Media::count() }}</h3>
+            <p>Archivos de Medios</p>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon green">
+            <i class="fas fa-image"></i>
+        </div>
+        <div class="stat-info">
+            <h3>{{ \App\Models\Media::where('type', 'image')->count() }}</h3>
+            <p>Imágenes</p>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon orange">
+            <i class="fas fa-file-alt"></i>
+        </div>
+        <div class="stat-info">
+            <h3>{{ \App\Models\Media::where('type', 'document')->count() }}</h3>
+            <p>Documentos</p>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon red">
+            <i class="fas fa-hdd"></i>
+        </div>
+        <div class="stat-info">
+            <h3>{{ number_format(\App\Models\Media::sum('size') / 1024 / 1024, 2) }} MB</h3>
+            <p>Espacio Usado</p>
+        </div>
+    </div>
+</div>
+
 <div class="card">
     <div class="card-header">
         <h2>Bienvenido al Panel Administrativo</h2>
