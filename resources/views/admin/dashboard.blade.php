@@ -88,6 +88,48 @@
     </div>
 </div>
 
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-icon red">
+            <i class="fas fa-envelope"></i>
+        </div>
+        <div class="stat-info">
+            <h3>{{ \App\Models\Message::new()->count() }}</h3>
+            <p>Mensajes Nuevos</p>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon blue">
+            <i class="fas fa-inbox"></i>
+        </div>
+        <div class="stat-info">
+            <h3>{{ \App\Models\Message::count() }}</h3>
+            <p>Total Mensajes</p>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon green">
+            <i class="fas fa-check-double"></i>
+        </div>
+        <div class="stat-info">
+            <h3>{{ \App\Models\Message::responded()->count() }}</h3>
+            <p>Mensajes Respondidos</p>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon orange">
+            <i class="fas fa-clock"></i>
+        </div>
+        <div class="stat-info">
+            <h3>{{ \App\Models\Message::whereDate('created_at', today())->count() }}</h3>
+            <p>Mensajes Hoy</p>
+        </div>
+    </div>
+</div>
+
 <div class="card">
     <div class="card-header">
         <h2>Bienvenido al Panel Administrativo</h2>

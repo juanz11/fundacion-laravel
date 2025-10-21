@@ -31,6 +31,11 @@ Route::middleware('guest')->group(function () {
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
+// Rutas de mensajes (requiere autenticación)
+Route::middleware('auth')->group(function () {
+    Route::post('/contacto', [\App\Http\Controllers\MessageController::class, 'store'])->name('messages.store');
+});
+
 // Rutas de administración (solo para admins)
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('dashboard');
@@ -44,4 +49,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::patch('/media/{media}', [\App\Http\Controllers\MediaController::class, 'update'])->name('media.update');
     Route::delete('/media/{media}', [\App\Http\Controllers\MediaController::class, 'destroy'])->name('media.destroy');
     Route::get('/media/{media}/download', [\App\Http\Controllers\MediaController::class, 'download'])->name('media.download');
+    
+    // Rutas de mensajes (admin)
+    Route::get('/messages', [\App\Http\Controllers\MessageController::class, 'index'])->name('messages.index');
+    Route::get('/messages/{message}', [\App\Http\Controllers\MessageController::class, 'show'])->name('messages.show');
+    Route::patch('/messages/{message}/status', [\App\Http\Controllers\MessageController::class, 'updateStatus'])->name('messages.update-status');
+    Route::delete('/messages/{message}', [\App\Http\Controllers\MessageController::class, 'destroy'])->name('messages.destroy');
 });

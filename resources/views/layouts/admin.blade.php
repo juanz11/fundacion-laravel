@@ -382,6 +382,17 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ route('admin.messages.index') }}" class="{{ request()->routeIs('admin.messages.*') ? 'active' : '' }}">
+                        <i class="fas fa-envelope"></i>
+                        <span>Mensajes</span>
+                        @if(\App\Models\Message::new()->count() > 0)
+                            <span style="background: #e74c3c; color: white; padding: 0.2rem 0.5rem; border-radius: 10px; font-size: 0.75rem; margin-left: 0.5rem;">
+                                {{ \App\Models\Message::new()->count() }}
+                            </span>
+                        @endif
+                    </a>
+                </li>
+                <li>
                     <a href="{{ url('/') }}">
                         <i class="fas fa-globe"></i>
                         <span>Ver Sitio Web</span>

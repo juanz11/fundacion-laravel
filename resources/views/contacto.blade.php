@@ -254,6 +254,17 @@
 
 <!-- Contact Container -->
 <div class="contact-container">
+    @if(session('success'))
+        <div style="background: #d4edda; color: #155724; padding: 1rem; border-radius: 8px; margin-bottom: 2rem; border: 1px solid #c3e6cb;">
+            <i class="fas fa-check-circle"></i> {{ session('success') }}
+        </div>
+    @endif
+
+    @if(session('error'))
+        <div style="background: #f8d7da; color: #721c24; padding: 1rem; border-radius: 8px; margin-bottom: 2rem; border: 1px solid #f5c6cb;">
+            <i class="fas fa-exclamation-circle"></i> {{ session('error') }}
+        </div>
+    @endif
     <!-- Emergency Banner -->
     <div class="emergency-banner">
         <h2>¿Necesitas Ayuda Inmediata?</h2>
@@ -271,41 +282,55 @@
         <!-- Contact Form -->
         <div class="contact-form">
             <h2>Envíanos un Mensaje</h2>
-            <form action="#" method="POST">
-                <div class="form-group">
-                    <label for="name">Nombre Completo *</label>
-                    <input type="text" id="name" name="name" required>
+            @guest
+                <div style="background: #fff3cd; color: #856404; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; border: 1px solid #ffeeba; text-align: center;">
+                    <i class="fas fa-info-circle" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                    <p style="margin-bottom: 1rem;"><strong>Debes iniciar sesión para enviar un mensaje</strong></p>
+                    <a href="{{ route('login') }}" class="btn btn-primary" style="display: inline-block; padding: 0.75rem 1.5rem; background: var(--primary-color); color: white; text-decoration: none; border-radius: 5px;">
+                        <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                    </a>
+                    <a href="{{ route('register') }}" style="display: inline-block; padding: 0.75rem 1.5rem; background: #6c757d; color: white; text-decoration: none; border-radius: 5px; margin-left: 0.5rem;">
+                        <i class="fas fa-user-plus"></i> Registrarse
+                    </a>
                 </div>
+            @else
+                <p style="margin-bottom: 1.5rem; color: var(--text-light);">
+                    <i class="fas fa-user"></i> Enviando como: <strong>{{ auth()->user()->name }}</strong>
+                </p>
+            @endguest
+            <form action="{{ route('messages.store') }}" method="POST" {{ !auth()->check() ? 'style=pointer-events:none;opacity:0.5;' : '' }}>
+                @csrf
 
                 <div class="form-group">
-                    <label for="email">Correo Electrónico *</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="phone">Teléfono</label>
-                    <input type="tel" id="phone" name="phone">
+                    <label for="phone">Teléfono (opcional)</label>
+                    <input type="tel" id="phone" name="phone" value="{{ old('phone') }}" placeholder="Ej: 0414-1234567" {{ !auth()->check() ? 'disabled' : '' }}>
+                    @error('phone')
+                        <span style="color: #e74c3c; font-size: 0.875rem;">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 <div class="form-group">
                     <label for="subject">Asunto *</label>
-                    <select id="subject" name="subject" required>
-                        <option value="">Selecciona un asunto</option>
-                        <option value="ayuda">Necesito Ayuda</option>
-                        <option value="informacion">Solicitar Información</option>
-                        <option value="voluntario">Quiero ser Voluntario</option>
-                        <option value="donacion">Hacer una Donación</option>
-                        <option value="otro">Otro</option>
-                    </select>
+                    <input type="text" id="subject" name="subject" value="{{ old('subject') }}" placeholder="Ej: Necesito información sobre los programas" required {{ !auth()->check() ? 'disabled' : '' }}>
+                    @error('subject')
+                        <span style="color: #e74c3c; font-size: 0.875rem;">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 <div class="form-group">
                     <label for="message">Mensaje *</label>
-                    <textarea id="message" name="message" required></textarea>
+                    <textarea id="message" name="message" required {{ !auth()->check() ? 'disabled' : '' }}>{{ old('message') }}</textarea>
+                    @error('message')
+                        <span style="color: #e74c3c; font-size: 0.875rem;">{{ $message }}</span>
+                    @enderror
                 </div>
 
-                <button type="submit" class="submit-btn">Enviar Mensaje</button>
+                @auth
+                    <button type="submit" class="submit-btn">Enviar Mensaje</button>
+                @endauth
             </form>
+            @auth
+            @endauth
         </div>
 
         <!-- Contact Info -->
@@ -377,17 +402,4 @@
 @endsection
 
 @section('scripts')
-<script>
-    // Validación básica del formulario
-    document.querySelector('form').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Aquí puedes agregar la lógica para enviar el formulario
-        // Por ahora solo mostramos un mensaje
-        alert('Gracias por tu mensaje. Nos pondremos en contacto contigo pronto.');
-        
-        // Resetear el formulario
-        this.reset();
-    });
-</script>
 @endsection
