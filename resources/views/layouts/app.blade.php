@@ -326,6 +326,21 @@
                         </ul>
                     </li>
                     <li><a href="{{ url('/contacto') }}">Contacto</a></li>
+                    @auth
+                        @if(auth()->user()->isAdmin())
+                            <li><a href="{{ route('admin.dashboard') }}">Panel Admin</a></li>
+                        @endif
+                        <li>
+                            <form method="POST" action="{{ route('logout') }}" style="display: inline;">
+                                @csrf
+                                <button type="submit" style="background: none; border: none; color: var(--text-dark); font-weight: 500; font-size: 0.95rem; padding: 1.5rem 1.2rem; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px;">
+                                    Cerrar Sesión
+                                </button>
+                            </form>
+                        </li>
+                    @else
+                        <li><a href="{{ route('login') }}">Iniciar Sesión</a></li>
+                    @endauth
                     <li><a href="https://wa.me/584144008240?text=Hola%20necesito%20mas%20informacion" class="btn-contact">Contáctanos</a></li>
                 </ul>
                 <button class="mobile-menu-toggle">
