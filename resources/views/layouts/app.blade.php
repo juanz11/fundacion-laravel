@@ -326,6 +326,7 @@
                         </ul>
                     </li>
                     <li><a href="{{ url('/contacto') }}">Contacto</a></li>
+                    <li><a href="{{ url('/donar') }}">Donar</a></li>
                     @auth
                         @if(auth()->user()->isAdmin())
                             <li><a href="{{ route('admin.dashboard') }}">Panel Admin</a></li>

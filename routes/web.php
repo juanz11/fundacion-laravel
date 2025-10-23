@@ -21,6 +21,10 @@ Route::get('/contacto', function () {
     return view('contacto');
 });
 
+Route::get('/donar', function () {
+    return view('donar');
+});
+
 // Rutas de autenticación
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
