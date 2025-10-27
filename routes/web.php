@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DonationController;
 
 // Rutas públicas
 Route::get('/', function () {
@@ -60,6 +61,11 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('/messages/{message}', [\App\Http\Controllers\MessageController::class, 'show'])->name('messages.show');
     Route::patch('/messages/{message}/status', [\App\Http\Controllers\MessageController::class, 'updateStatus'])->name('messages.update-status');
     Route::delete('/messages/{message}', [\App\Http\Controllers\MessageController::class, 'destroy'])->name('messages.destroy');
+    
+    // Rutas de donaciones (admin)
+    Route::get('/donations', [DonationController::class, 'adminIndex'])->name('donations.index');
+    Route::patch('/donations/{donation}/status', [DonationController::class, 'updateStatus'])->name('donations.update-status');
+    Route::delete('/donations/{donation}', [DonationController::class, 'destroy'])->name('donations.destroy');
 });
 
 // Rutas de usuario (solo para usuarios autenticados no-admin)
@@ -67,4 +73,5 @@ Route::middleware('auth')->prefix('usuario')->name('user.')->group(function () {
     Route::get('/', [UserController::class, 'dashboard'])->name('dashboard');
     Route::get('/cursos', [UserController::class, 'courses'])->name('courses');
     Route::get('/donaciones', [UserController::class, 'donations'])->name('donations');
+    Route::post('/donaciones', [DonationController::class, 'store'])->name('donations.store');
 });

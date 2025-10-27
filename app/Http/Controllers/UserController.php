@@ -29,8 +29,16 @@ class UserController extends Controller
      */
     public function donations()
     {
-        // Por ahora retornamos una vista vacía
-        // En el futuro se implementará la lógica de donaciones
-        return view('user.donations');
+        $donations = auth()->user()->donations()
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        $stats = [
+            'total_donated' => auth()->user()->donations()->approved()->sum('amount'),
+            'total_count' => auth()->user()->donations()->count(),
+            'last_donation' => auth()->user()->donations()->approved()->latest()->first(),
+        ];
+
+        return view('user.donations', compact('donations', 'stats'));
     }
 }

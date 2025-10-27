@@ -333,6 +333,37 @@
 <section class="bank-accounts-section">
     <h2>Datos Bancarios para Donaciones</h2>
     
+    @guest
+        <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 1.5rem; margin-bottom: 2rem; border-radius: 8px;">
+            <h3 style="color: #856404; margin-bottom: 0.5rem;">
+                <i class="fas fa-info-circle"></i> Importante
+            </h3>
+            <p style="color: #856404; margin-bottom: 1rem;">
+                Para registrar tu donación después de realizar el pago, debes <strong>iniciar sesión</strong> o <strong>crear una cuenta</strong>.
+            </p>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <a href="{{ route('login') }}" style="background: #0a74da; color: white; padding: 0.7rem 1.5rem; border-radius: 5px; text-decoration: none; font-weight: 600;">
+                    <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                </a>
+                <a href="{{ route('register') }}" style="background: #25d366; color: white; padding: 0.7rem 1.5rem; border-radius: 5px; text-decoration: none; font-weight: 600;">
+                    <i class="fas fa-user-plus"></i> Crear Cuenta
+                </a>
+            </div>
+        </div>
+    @else
+        <div style="background: #d4edda; border-left: 4px solid #28a745; padding: 1.5rem; margin-bottom: 2rem; border-radius: 8px;">
+            <h3 style="color: #155724; margin-bottom: 0.5rem;">
+                <i class="fas fa-check-circle"></i> ¿Ya realizaste tu donación?
+            </h3>
+            <p style="color: #155724; margin-bottom: 1rem;">
+                Una vez que hayas realizado tu pago, registra tu donación para que podamos validarla.
+            </p>
+            <a href="{{ route('user.donations') }}" style="background: #28a745; color: white; padding: 0.7rem 1.5rem; border-radius: 5px; text-decoration: none; font-weight: 600; display: inline-block;">
+                <i class="fas fa-hand-holding-heart"></i> Registrar Mi Donación
+            </a>
+        </div>
+    @endguest
+    
     <div class="accounts-grid">
         <!-- BNC Cuenta Corriente -->
         <div class="account-card">

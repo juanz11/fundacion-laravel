@@ -393,6 +393,17 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ route('admin.donations.index') }}" class="{{ request()->routeIs('admin.donations.*') ? 'active' : '' }}">
+                        <i class="fas fa-hand-holding-heart"></i>
+                        <span>Donaciones</span>
+                        @if(\App\Models\Donation::pending()->count() > 0)
+                            <span style="background: #f39c12; color: white; padding: 0.2rem 0.5rem; border-radius: 10px; font-size: 0.75rem; margin-left: 0.5rem;">
+                                {{ \App\Models\Donation::pending()->count() }}
+                            </span>
+                        @endif
+                    </a>
+                </li>
+                <li>
                     <a href="{{ url('/') }}">
                         <i class="fas fa-globe"></i>
                         <span>Ver Sitio Web</span>

@@ -54,4 +54,12 @@ class User extends Authenticatable
     {
         return $this->role === 'admin';
     }
+
+    /**
+     * Get the donations for the user
+     */
+    public function donations()
+    {
+        return $this->hasMany(Donation::class);
+    }
 }
