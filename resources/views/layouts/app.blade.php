@@ -330,6 +330,8 @@
                     @auth
                         @if(auth()->user()->isAdmin())
                             <li><a href="{{ route('admin.dashboard') }}">Panel Admin</a></li>
+                        @else
+                            <li><a href="{{ route('user.dashboard') }}">Mi Panel</a></li>
                         @endif
                         <li>
                             <form method="POST" action="{{ route('logout') }}" style="display: inline;">

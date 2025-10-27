@@ -28,7 +28,7 @@ class AuthController extends Controller
                 return redirect()->intended('/admin');
             }
             
-            return redirect()->intended('/');
+            return redirect()->intended(route('user.dashboard'));
         }
 
         return back()->withErrors([
@@ -58,7 +58,7 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect('/')->with('success', '¡Registro exitoso!');
+        return redirect()->route('user.dashboard')->with('success', '¡Registro exitoso!');
     }
 
     public function logout(Request $request)
