@@ -460,9 +460,10 @@
         
         <div class="contact-card">
             <h3>Contacto</h3>
-            <p><strong>Teléfono:</strong><br>
-            (+58) 0414-4008240<br>
+            <p><strong>Teléfono Emergencias:</strong><br>
             (+58) 0414-4265181</p>
+            <p><strong>Teléfono Información:</strong><br>
+            (+58) 0414-4008240</p>
             <p><strong>Email:</strong><br>
             Fundabl25@fundaciondavidbrandt.org<br>
             fundavidbrandtlasaballett@gmail.com</p>

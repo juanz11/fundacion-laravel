@@ -270,9 +270,9 @@
         <h2>¿Necesitas Ayuda Inmediata?</h2>
         <p>Si estás en crisis, llámanos ahora. Estamos disponibles 24/7</p>
         <div class="phone">
-            <i class="fas fa-phone-alt"></i> 0414-4008240
+            <i class="fas fa-phone-alt"></i> 0414-4265181 (Emergencias)
         </div>
-        <a href="https://wa.me/584144008240?text=Hola%20necesito%20ayuda%20urgente" class="btn btn-primary">
+        <a href="https://wa.me/584144265181?text=Hola%20necesito%20ayuda%20urgente" class="btn btn-primary">
             <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
         </a>
     </div>
@@ -340,9 +340,10 @@
                     <i class="fas fa-phone-alt"></i>
                 </div>
                 <h3>Teléfonos</h3>
-                <p><strong>Línea de Crisis 24/7:</strong></p>
-                <p><a href="tel:+584144008240">0414-4008240</a></p>
+                <p><strong>Emergencias 24/7:</strong></p>
                 <p><a href="tel:+584144265181">0414-4265181</a></p>
+                <p><strong>Información General:</strong></p>
+                <p><a href="tel:+584144008240">0414-4008240</a></p>
             </div>
 
             <div class="info-card">

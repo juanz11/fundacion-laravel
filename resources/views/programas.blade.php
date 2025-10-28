@@ -214,7 +214,8 @@
 
             <h3>Cómo Acceder</h3>
             <ul>
-                <li>Llamada telefónica: 0414-4008240 / 0414-4265181</li>
+                <li>Emergencias 24/7: 0414-4265181</li>
+                <li>Información General: 0414-4008240</li>
                 <li>WhatsApp: Contacto directo</li>
                 <li>Correo electrónico: fundabl25@fundaciondavidbrandt.org</li>
                 <li>Visita presencial: Previa cita</li>
@@ -295,6 +296,6 @@
 <section class="cta-section">
     <h2>¿Necesitas Ayuda?</h2>
     <p>No estás solo. Estamos aquí para apoyarte en cada paso del camino. Contáctanos ahora.</p>
-    <a href="https://wa.me/584144008240?text=Hola%20necesito%20mas%20informacion" class="btn btn-primary">Contactar Ahora</a>
+    <a href="https://wa.me/584144265181?text=Hola%20necesito%20ayuda%20urgente" class="btn btn-primary">Contactar Ahora</a>
 </section>
 @endsection

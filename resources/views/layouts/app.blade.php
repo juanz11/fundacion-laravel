@@ -369,8 +369,8 @@
             <div>
                 <h3>Contacto</h3>
                 <p><i class="fas fa-envelope"></i> fundabl25@fundaciondavidbrandt.org</p>
-                <p><i class="fas fa-phone"></i> 0414-4008240</p>
-                <p><i class="fas fa-phone"></i> 0414-4265181</p>
+                <p><i class="fas fa-phone"></i> 0414-4265181 (Emergencias)</p>
+                <p><i class="fas fa-phone"></i> 0414-4008240 (Información)</p>
             </div>
             
             <div>

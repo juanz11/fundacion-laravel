@@ -296,7 +296,7 @@
 <section class="hero-home">
     <h1>Fundación David Brandt</h1>
     <p>Brindando apoyo emocional y asistencia en crisis a quienes más lo necesitan</p>
-    <a href="https://wa.me/584144008240?text=Hola%20necesito%20mas%20informacion" class="btn btn-primary">Necesito Ayuda</a>
+    <a href="https://wa.me/584144008240?text=Hola%20necesito%20mas%20informacion" class="btn btn-primary">Necesito más información</a>
 </section>
 
 <!-- Services Section -->
@@ -416,8 +416,8 @@
                 <i class="fas fa-phone-alt"></i>
             </div>
             <h3>Llámanos</h3>
-            <p><strong>0414-4008240</strong></p>
-            <p><strong>0414-4265181</strong></p>
+            <p><strong>Emergencias:</strong> 0414-4265181</p>
+            <p><strong>Información:</strong> 0414-4008240</p>
         </div>
     </div>
 </section>
