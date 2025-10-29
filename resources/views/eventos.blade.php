@@ -263,7 +263,7 @@
             <span class="evento-fecha">
                 <i class="fas fa-calendar-alt"></i> Domingo 30 de Noviembre, 2025
             </span>
-            <h2 class="evento-title">1era Caminata Una Llamada, Una Vida 5K</h2>
+            <h2 class="evento-title"><strong>Fundación David Brandt</strong> presenta:<br>1era Caminata Una Llamada, Una Vida 5K</h2>
             
             <div class="evento-detalles">
                 <div class="detalle-item">
@@ -297,6 +297,12 @@
                 <p>
                     <strong>Costo de inscripción:</strong> Bs. 10 o $3 USD
                 </p>
+            </div>
+
+            <!-- Métodos de Pago -->
+            <div style="margin: 2rem 0; text-align: center;">
+                <h3 style="margin-bottom: 1rem; color: var(--text-dark);">Métodos de Pago Disponibles</h3>
+                <img src="{{ asset('images/caminata5k-METODOSDEPAGO.png') }}" alt="Métodos de Pago" style="max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             </div>
 
             <button onclick="openRegistrationModal()" class="btn-inscribirse">
@@ -340,8 +346,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="social_media">Red Social (Instagram/Facebook) *</label>
-                    <input type="text" id="social_media" name="social_media" required placeholder="@usuario">
+                    <label for="social_media">Red Social (Instagram/Facebook)</label>
+                    <input type="text" id="social_media" name="social_media" placeholder="@usuario">
                 </div>
 
                 <div class="form-group">
@@ -350,8 +356,6 @@
                         <option value="">Seleccione un método</option>
                         <option value="transferencia">Transferencia Bancaria</option>
                         <option value="pago_movil">Pago Móvil</option>
-                        <option value="zelle">Zelle</option>
-                        <option value="paypal">PayPal</option>
                         <option value="efectivo">Efectivo</option>
                         <option value="otro">Otro</option>
                     </select>
@@ -407,6 +411,16 @@
         const formData = new FormData(this);
         const submitBtn = this.querySelector('.btn-submit');
         
+        // Capturar datos del formulario antes de enviar
+        const registrationData = {
+            nombre: formData.get('full_name'),
+            cedula: formData.get('id_number'),
+            telefono: formData.get('phone'),
+            redSocial: formData.get('social_media'),
+            metodoPago: formData.get('payment_method') || 'No especificado',
+            referencia: formData.get('payment_reference')
+        };
+        
         // Deshabilitar botón mientras se procesa
         submitBtn.disabled = true;
         submitBtn.style.opacity = '0.6';
@@ -432,9 +446,28 @@
         })
         .then(data => {
             if (data.success) {
-                alert('¡Registro exitoso! Tu inscripción está pendiente de aprobación. Te contactaremos pronto.');
+                alert('¡Registro exitoso! Tu inscripción está pendiente de aprobación. Te redirigiremos a WhatsApp para confirmar tu registro.');
                 closeRegistrationModal();
                 this.reset();
+                
+                // Crear mensaje de WhatsApp con toda la información del registro
+                const mensaje = `Hola, acabo de completar mi inscripción para la Caminata 5K.
+
+*Datos de mi registro:*
+📝 Nombre: ${registrationData.nombre}
+🆔 Cédula: ${registrationData.cedula}
+📱 Teléfono: ${registrationData.telefono}
+📲 Red Social: ${registrationData.redSocial}
+💳 Método de Pago: ${registrationData.metodoPago}
+🔢 Referencia: ${registrationData.referencia}
+
+Necesito confirmar mi registro. ¡Gracias!`;
+                
+                // Abrir WhatsApp automáticamente después del registro exitoso
+                setTimeout(() => {
+                    const whatsappURL = `https://api.whatsapp.com/send/?phone=584144008240&text=${encodeURIComponent(mensaje)}&type=phone_number&app_absent=0`;
+                    window.open(whatsappURL, '_blank');
+                }, 1000);
             } else {
                 alert('Error: ' + (data.message || 'No se pudo completar el registro'));
                 isSubmitting = false; // Permitir reintentar

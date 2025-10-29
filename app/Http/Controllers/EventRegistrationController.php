@@ -17,14 +17,13 @@ class EventRegistrationController extends Controller
                 'full_name' => 'required|string|max:255',
                 'id_number' => 'required|string|max:50',
                 'phone' => 'required|string|max:20',
-                'social_media' => 'required|string|max:255',
+                'social_media' => 'nullable|string|max:255',
                 'payment_reference' => 'required|string|max:255',
                 'payment_method' => 'nullable|string|max:255',
             ], [
                 'id_number.required' => 'La cédula es obligatoria.',
                 'full_name.required' => 'El nombre completo es obligatorio.',
                 'phone.required' => 'El teléfono es obligatorio.',
-                'social_media.required' => 'La red social es obligatoria.',
                 'payment_reference.required' => 'El número de referencia es obligatorio.',
             ]);
 
