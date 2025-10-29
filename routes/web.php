@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DonationController;
+use App\Http\Controllers\EventRegistrationController;
 
 // Rutas públicas
 Route::get('/', function () {
@@ -26,6 +27,13 @@ Route::get('/contacto', function () {
 Route::get('/donar', function () {
     return view('donar');
 });
+
+Route::get('/eventos', function () {
+    return view('eventos');
+});
+
+// Ruta pública para registro de eventos
+Route::post('/evento/registro', [EventRegistrationController::class, 'store'])->name('event.register');
 
 // Rutas de autenticación
 Route::middleware('guest')->group(function () {
@@ -66,6 +74,11 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('/donations', [DonationController::class, 'adminIndex'])->name('donations.index');
     Route::patch('/donations/{donation}/status', [DonationController::class, 'updateStatus'])->name('donations.update-status');
     Route::delete('/donations/{donation}', [DonationController::class, 'destroy'])->name('donations.destroy');
+    
+    // Rutas de eventos (admin)
+    Route::get('/events', [EventRegistrationController::class, 'adminIndex'])->name('events.index');
+    Route::patch('/events/{registration}/status', [EventRegistrationController::class, 'updateStatus'])->name('events.update-status');
+    Route::delete('/events/{registration}', [EventRegistrationController::class, 'destroy'])->name('events.destroy');
 });
 
 // Rutas de usuario (solo para usuarios autenticados no-admin)

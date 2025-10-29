@@ -325,6 +325,7 @@
                             <li><a href="{{ url('/programas#postvencion') }}">Programas y Planes de Postvención</a></li>
                         </ul>
                     </li>
+                    <li><a href="{{ url('/eventos') }}">Eventos</a></li>
                     <li><a href="{{ url('/contacto') }}">Contacto</a></li>
                     <li><a href="{{ url('/donar') }}">Donar</a></li>
                     @auth
