@@ -17,23 +17,37 @@ class EventRegistrationController extends Controller
                 'full_name' => 'required|string|max:255',
                 'id_number' => 'required|string|max:50',
                 'phone' => 'required|string|max:20',
+                'email' => 'nullable|email|max:255',
                 'social_media' => 'nullable|string|max:255',
-                'payment_reference' => 'required|string|max:255',
+                'payment_reference' => 'nullable|string|max:255',
                 'payment_method' => 'nullable|string|max:255',
+                'payment_proof' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:5120',
             ], [
                 'id_number.required' => 'La cédula es obligatoria.',
                 'full_name.required' => 'El nombre completo es obligatorio.',
                 'phone.required' => 'El teléfono es obligatorio.',
-                'payment_reference.required' => 'El número de referencia es obligatorio.',
+                'email.email' => 'El correo electrónico debe ser válido.',
+                'payment_proof.mimes' => 'El comprobante debe ser un archivo JPG, PNG o PDF.',
+                'payment_proof.max' => 'El comprobante no debe superar los 5MB.',
             ]);
+
+            // Guardar el archivo de comprobante de pago
+            $paymentProofPath = null;
+            if ($request->hasFile('payment_proof')) {
+                $file = $request->file('payment_proof');
+                $filename = time() . '_' . $validated['id_number'] . '.' . $file->getClientOriginalExtension();
+                $paymentProofPath = $file->storeAs('payment_proofs', $filename, 'public');
+            }
 
             $registration = EventRegistration::create([
                 'full_name' => $validated['full_name'],
                 'id_number' => $validated['id_number'],
                 'phone' => $validated['phone'],
+                'email' => $validated['email'],
                 'social_media' => $validated['social_media'],
                 'payment_reference' => $validated['payment_reference'],
                 'payment_method' => $validated['payment_method'] ?? null,
+                'payment_proof' => $paymentProofPath,
                 'status' => 'pending',
             ]);
 

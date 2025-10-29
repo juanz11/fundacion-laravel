@@ -258,7 +258,7 @@
 <div class="eventos-container">
     <!-- Evento Principal: Caminata 5K -->
     <div class="evento-card">
-        <img src="{{ asset('images/caminata5k-01.png') }}" alt="Caminata 5K" class="evento-image">
+        <img src="{{ asset('images/unnamed.png') }}" alt="Caminata 5K" class="evento-image">
         <div class="evento-content">
             <span class="evento-fecha">
                 <i class="fas fa-calendar-alt"></i> Domingo 30 de Noviembre, 2025
@@ -294,8 +294,8 @@
                     Todos los participantes recibirán una franela del evento y un kit de hidratación. 
                     ¡Ven con tu familia y amigos a ser parte de este movimiento que salva vidas!
                 </p>
-                <p>
-                    <strong>Costo de inscripción:</strong> Bs. 10 o $3 USD
+                <p style="font-size: 1.5rem; color: #000; font-weight: bold; margin-top: 1.5rem;">
+                    Costo de inscripción: $20 USD
                 </p>
             </div>
 
@@ -327,7 +327,7 @@
             <h2>Registro - Caminata 5K</h2>
         </div>
         <div class="modal-body">
-            <form id="registrationForm" method="POST" action="{{ route('event.register') }}">
+            <form id="registrationForm" method="POST" action="{{ route('event.register') }}" enctype="multipart/form-data">
                 @csrf
                 
                 <div class="form-group">
@@ -346,6 +346,11 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="email">Correo Electrónico</label>
+                    <input type="email" id="email" name="email" placeholder="ejemplo@correo.com">
+                </div>
+
+                <div class="form-group">
                     <label for="social_media">Red Social (Instagram/Facebook)</label>
                     <input type="text" id="social_media" name="social_media" placeholder="@usuario">
                 </div>
@@ -361,9 +366,19 @@
                     </select>
                 </div>
 
-                <div class="form-group">
-                    <label for="payment_reference">Número de Referencia de Pago *</label>
+                <div class="form-group" id="reference-group">
+                    <label for="payment_reference" id="reference-label">Número de Referencia de Pago *</label>
                     <input type="text" id="payment_reference" name="payment_reference" required placeholder="Ingrese el número de referencia">
+                    <small style="color: #666; font-size: 0.85rem; display: none;" id="reference-hint">No requerido para Efectivo u Otro</small>
+                </div>
+
+                <div class="form-group" id="proof-group">
+                    <label for="payment_proof" id="proof-label">Comprobante de Pago *</label>
+                    <input type="file" id="payment_proof" name="payment_proof" required accept="image/*,.pdf">
+                    <small style="color: #666; font-size: 0.85rem; display: block; margin-top: 0.5rem;">
+                        Formatos permitidos: JPG, PNG, PDF (máx. 5MB)
+                    </small>
+                    <small style="color: #666; font-size: 0.85rem; display: none;" id="proof-hint">No requerido para Efectivo u Otro</small>
                 </div>
 
                 <button type="submit" class="btn-submit">
@@ -397,6 +412,42 @@
         }
     }
 
+    // Manejar cambio en método de pago
+    document.getElementById('payment_method').addEventListener('change', function() {
+        const paymentMethod = this.value;
+        const referenceInput = document.getElementById('payment_reference');
+        const referenceLabel = document.getElementById('reference-label');
+        const referenceHint = document.getElementById('reference-hint');
+        const proofInput = document.getElementById('payment_proof');
+        const proofLabel = document.getElementById('proof-label');
+        const proofHint = document.getElementById('proof-hint');
+        
+        // Si es efectivo u otro, hacer los campos opcionales
+        if (paymentMethod === 'efectivo' || paymentMethod === 'otro') {
+            // Referencia opcional
+            referenceInput.removeAttribute('required');
+            referenceLabel.textContent = 'Número de Referencia de Pago';
+            referenceHint.style.display = 'block';
+            referenceInput.placeholder = 'Opcional';
+            
+            // Comprobante opcional
+            proofInput.removeAttribute('required');
+            proofLabel.textContent = 'Comprobante de Pago';
+            proofHint.style.display = 'block';
+        } else {
+            // Referencia obligatoria
+            referenceInput.setAttribute('required', 'required');
+            referenceLabel.textContent = 'Número de Referencia de Pago *';
+            referenceHint.style.display = 'none';
+            referenceInput.placeholder = 'Ingrese el número de referencia';
+            
+            // Comprobante obligatorio
+            proofInput.setAttribute('required', 'required');
+            proofLabel.textContent = 'Comprobante de Pago *';
+            proofHint.style.display = 'none';
+        }
+    });
+
     // Manejar envío del formulario
     document.getElementById('registrationForm').addEventListener('submit', function(e) {
         e.preventDefault();
@@ -416,9 +467,10 @@
             nombre: formData.get('full_name'),
             cedula: formData.get('id_number'),
             telefono: formData.get('phone'),
-            redSocial: formData.get('social_media'),
+            email: formData.get('email'),
+            redSocial: formData.get('social_media') || 'No especificado',
             metodoPago: formData.get('payment_method') || 'No especificado',
-            referencia: formData.get('payment_reference')
+            referencia: formData.get('payment_reference') || 'No especificado'
         };
         
         // Deshabilitar botón mientras se procesa
@@ -457,6 +509,7 @@
 📝 Nombre: ${registrationData.nombre}
 🆔 Cédula: ${registrationData.cedula}
 📱 Teléfono: ${registrationData.telefono}
+📧 Email: ${registrationData.email}
 📲 Red Social: ${registrationData.redSocial}
 💳 Método de Pago: ${registrationData.metodoPago}
 🔢 Referencia: ${registrationData.referencia}
