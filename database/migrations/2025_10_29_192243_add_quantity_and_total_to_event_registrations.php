@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('event_registrations', function (Blueprint $table) {
-            // Agregar índice único para evitar registros duplicados por cédula
-            $table->unique('id_number', 'unique_id_number_per_event');
+            $table->integer('quantity')->default(1)->after('payment_proof');
+            $table->decimal('total_amount', 10, 2)->default(20.00)->after('quantity');
         });
     }
 
@@ -23,7 +23,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('event_registrations', function (Blueprint $table) {
-            $table->dropUnique('unique_id_number_per_event');
+            $table->dropColumn(['quantity', 'total_amount']);
         });
     }
 };

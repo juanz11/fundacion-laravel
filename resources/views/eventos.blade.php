@@ -310,7 +310,6 @@
             </button>
         </div>
     </div>
-
     <!-- Mensaje si no hay más eventos -->
     <div class="no-eventos">
         <i class="fas fa-calendar-check"></i>
@@ -346,14 +345,31 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="email">Correo Electrónico</label>
+                    <label for="email">Correo Electrónico <span style="color: #000;">(Opcional)</span></label>
                     <input type="email" id="email" name="email" placeholder="ejemplo@correo.com">
                 </div>
 
                 <div class="form-group">
-                    <label for="social_media">Red Social (Instagram/Facebook)</label>
+                    <label for="social_media">Red Social (Instagram/Facebook) <span style="color: #000;">(Opcional)</span></label>
                     <input type="text" id="social_media" name="social_media" placeholder="@usuario">
                 </div>
+
+                <div class="form-group">
+                    <label for="quantity">Cantidad de Inscripciones *</label>
+                    <input type="number" id="quantity" name="quantity" value="1" min="1" max="100" required>
+                    <small style="color: #666; font-size: 0.85rem; display: block; margin-top: 0.5rem;">
+                        Precio por persona: $20 USD
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label for="total_amount_display">Total a Pagar *</label>
+                    <input type="text" id="total_amount_display" value="$20.00 USD" readonly style="background-color: #f0f0f0; font-weight: bold; font-size: 1.1rem;">
+                    <input type="hidden" id="total_amount" name="total_amount" value="20.00">
+                </div>
+
+                <!-- Contenedor para personas adicionales -->
+                <div id="additional-people-container"></div>
 
                 <div class="form-group">
                     <label for="payment_method">Método de Pago</label>
@@ -412,6 +428,45 @@
         }
     }
 
+    // Calcular total automáticamente y generar campos para personas adicionales
+    const PRICE_PER_PERSON = 20;
+    document.getElementById('quantity').addEventListener('input', function() {
+        const quantity = parseInt(this.value) || 1;
+        const total = (quantity * PRICE_PER_PERSON).toFixed(2);
+        document.getElementById('total_amount_display').value = '$' + total + ' USD';
+        document.getElementById('total_amount').value = total;
+        
+        // Generar campos para personas adicionales
+        const container = document.getElementById('additional-people-container');
+        container.innerHTML = '';
+        
+        if (quantity > 1) {
+            for (let i = 2; i <= quantity; i++) {
+                const personDiv = document.createElement('div');
+                personDiv.style.cssText = 'border: 2px solid #667eea; padding: 1.5rem; margin: 1.5rem 0; border-radius: 10px; background-color: #f9f9ff;';
+                personDiv.innerHTML = `
+                    <h3 style="color: #667eea; margin-bottom: 1rem; font-size: 1.2rem;">Persona ${i}</h3>
+                    
+                    <div class="form-group">
+                        <label for="person_${i}_name">Nombre y Apellido *</label>
+                        <input type="text" id="person_${i}_name" name="additional_people[${i-2}][name]" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="person_${i}_id">Cédula *</label>
+                        <input type="text" id="person_${i}_id" name="additional_people[${i-2}][id_number]" required placeholder="Ej: V-12345678">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="person_${i}_phone">Teléfono *</label>
+                        <input type="tel" id="person_${i}_phone" name="additional_people[${i-2}][phone]" required placeholder="Ej: 0414-1234567">
+                    </div>
+                `;
+                container.appendChild(personDiv);
+            }
+        }
+    });
+
     // Manejar cambio en método de pago
     document.getElementById('payment_method').addEventListener('change', function() {
         const paymentMethod = this.value;
@@ -469,6 +524,8 @@
             telefono: formData.get('phone'),
             email: formData.get('email'),
             redSocial: formData.get('social_media') || 'No especificado',
+            cantidad: formData.get('quantity'),
+            total: formData.get('total_amount'),
             metodoPago: formData.get('payment_method') || 'No especificado',
             referencia: formData.get('payment_reference') || 'No especificado'
         };
@@ -511,6 +568,8 @@
 📱 Teléfono: ${registrationData.telefono}
 📧 Email: ${registrationData.email}
 📲 Red Social: ${registrationData.redSocial}
+👥 Cantidad de Inscripciones: ${registrationData.cantidad}
+💵 Total Pagado: $${registrationData.total} USD
 💳 Método de Pago: ${registrationData.metodoPago}
 🔢 Referencia: ${registrationData.referencia}
 

@@ -18,6 +18,8 @@ class EventRegistration extends Model
         'payment_reference',
         'payment_method',
         'payment_proof',
+        'quantity',
+        'total_amount',
         'status',
         'admin_notes',
         'approved_at',
@@ -58,5 +60,13 @@ class EventRegistration extends Model
     public function scopeRejected($query)
     {
         return $query->where('status', 'rejected');
+    }
+
+    /**
+     * Get the additional participants for this registration
+     */
+    public function additionalParticipants()
+    {
+        return $this->hasMany(AdditionalParticipant::class);
     }
 }

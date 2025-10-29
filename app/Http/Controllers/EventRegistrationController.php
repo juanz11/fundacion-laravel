@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\EventRegistration;
+use App\Models\AdditionalParticipant;
 use Illuminate\Http\Request;
 
 class EventRegistrationController extends Controller
@@ -22,6 +23,8 @@ class EventRegistrationController extends Controller
                 'payment_reference' => 'nullable|string|max:255',
                 'payment_method' => 'nullable|string|max:255',
                 'payment_proof' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:5120',
+                'quantity' => 'required|integer|min:1|max:100',
+                'total_amount' => 'required|numeric|min:20',
             ], [
                 'id_number.required' => 'La cédula es obligatoria.',
                 'full_name.required' => 'El nombre completo es obligatorio.',
@@ -29,6 +32,9 @@ class EventRegistrationController extends Controller
                 'email.email' => 'El correo electrónico debe ser válido.',
                 'payment_proof.mimes' => 'El comprobante debe ser un archivo JPG, PNG o PDF.',
                 'payment_proof.max' => 'El comprobante no debe superar los 5MB.',
+                'quantity.required' => 'La cantidad de inscripciones es obligatoria.',
+                'quantity.min' => 'Debe inscribir al menos 1 persona.',
+                'total_amount.required' => 'El monto total es obligatorio.',
             ]);
 
             // Guardar el archivo de comprobante de pago
@@ -39,6 +45,7 @@ class EventRegistrationController extends Controller
                 $paymentProofPath = $file->storeAs('payment_proofs', $filename, 'public');
             }
 
+            // Crear registro principal (primera persona)
             $registration = EventRegistration::create([
                 'full_name' => $validated['full_name'],
                 'id_number' => $validated['id_number'],
@@ -48,8 +55,29 @@ class EventRegistrationController extends Controller
                 'payment_reference' => $validated['payment_reference'],
                 'payment_method' => $validated['payment_method'] ?? null,
                 'payment_proof' => $paymentProofPath,
+                'quantity' => $validated['quantity'],
+                'total_amount' => $validated['total_amount'],
                 'status' => 'pending',
             ]);
+
+            // Crear registros adicionales para las demás personas (si existen)
+            if ($request->has('additional_people') && is_array($request->additional_people)) {
+                foreach ($request->additional_people as $person) {
+                    EventRegistration::create([
+                        'full_name' => $person['name'],
+                        'id_number' => $person['id_number'],
+                        'phone' => $person['phone'],
+                        'email' => $validated['email'], // Mismo email del titular
+                        'social_media' => $validated['social_media'], // Misma red social del titular
+                        'payment_reference' => $validated['payment_reference'], // Misma referencia
+                        'payment_method' => $validated['payment_method'] ?? null, // Mismo método
+                        'payment_proof' => $paymentProofPath, // Mismo comprobante
+                        'quantity' => 1, // Cada registro individual es 1 persona
+                        'total_amount' => 20.00, // $20 por persona
+                        'status' => 'pending',
+                    ]);
+                }
+            }
 
             // Si es una petición AJAX, devolver JSON
             if ($request->expectsJson() || $request->ajax()) {
