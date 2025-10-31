@@ -266,6 +266,55 @@
         @media (max-width: 768px) {
             .nav-menu {
                 display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+                padding: 1rem 0;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-menu > li {
+                width: 100%;
+            }
+
+            .nav-menu > li > a {
+                padding: 1rem 2rem;
+            }
+
+            .nav-menu .submenu {
+                position: static;
+                box-shadow: none;
+                background: #f9f9f9;
+                display: none;
+            }
+
+            .nav-menu .submenu.active {
+                display: block;
+            }
+
+            .nav-menu > li.has-submenu > a::after {
+                content: '\f107';
+                font-family: 'Font Awesome 6 Free';
+                font-weight: 900;
+                float: right;
+                transition: transform 0.3s;
+            }
+
+            .nav-menu > li.has-submenu.active > a::after {
+                transform: rotate(180deg);
+            }
+
+            .btn-contact {
+                margin: 1rem 2rem;
+                display: inline-block;
+                text-align: center;
             }
 
             .mobile-menu-toggle {
@@ -314,11 +363,11 @@
             </div>
             
             <nav>
-                <ul class="nav-menu">
+                <ul class="nav-menu" id="navMenu">
                     <li><a href="{{ url('/') }}">Inicio</a></li>
                     <li><a href="{{ url('/quienes-somos') }}">Quiénes Somos</a></li>
-                    <li>
-                        <a href="{{ url('/programas') }}">Programas</a>
+                    <li class="has-submenu">
+                        <a href="{{ url('/programas') }}" class="submenu-toggle">Programas</a>
                         <ul class="submenu">
                             <li><a href="{{ url('/programas#prevencion') }}">Programas y Planes de Prevención</a></li>
                             <li><a href="{{ url('/programas#intervencion') }}">Programas y Planes de Intervención Inmediata</a></li>
@@ -347,7 +396,7 @@
                     @endauth
                     <li><a href="https://wa.me/584144008240?text=Hola%20necesito%20mas%20informacion" class="btn-contact">Contáctanos</a></li>
                 </ul>
-                <button class="mobile-menu-toggle">
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
                     <i class="fas fa-bars"></i>
                 </button>
             </nav>
@@ -391,5 +440,63 @@
     </footer>
 
     @yield('scripts')
+    
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const navMenu = document.getElementById('navMenu');
+            const submenuToggles = document.querySelectorAll('.submenu-toggle');
+            
+            // Toggle mobile menu
+            if (mobileMenuToggle) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                    const icon = this.querySelector('i');
+                    if (navMenu.classList.contains('active')) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+            }
+            
+            // Toggle submenu on mobile
+            submenuToggles.forEach(function(toggle) {
+                toggle.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        const parentLi = this.parentElement;
+                        const submenu = parentLi.querySelector('.submenu');
+                        
+                        parentLi.classList.toggle('active');
+                        submenu.classList.toggle('active');
+                    }
+                });
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('nav') && navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    const icon = mobileMenuToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+            
+            // Close menu on window resize if it's open
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768 && navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    const icon = mobileMenuToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
