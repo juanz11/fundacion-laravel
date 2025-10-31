@@ -714,7 +714,7 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('event.register') }}">
+        <form id="registrationFormHome" method="POST" action="{{ route('event.register') }}" enctype="multipart/form-data">
             @csrf
             
             <div class="form-group">
@@ -736,28 +736,58 @@
             </div>
 
             <div class="form-group">
-                <label for="social_media">Red Social (Instagram/Facebook) *</label>
-                <input type="text" id="social_media" name="social_media" required 
-                       placeholder="Ej: @usuario" value="{{ old('social_media') }}">
+                <label for="email">Correo Electrónico <span style="color: #000;">(Opcional)</span></label>
+                <input type="email" id="email" name="email" placeholder="ejemplo@correo.com" value="{{ old('email') }}">
             </div>
 
             <div class="form-group">
-                <label for="payment_reference">Confirmación de Transferencia (Número de Referencia) *</label>
-                <input type="text" id="payment_reference" name="payment_reference" required 
-                       placeholder="Ej: 123456789" value="{{ old('payment_reference') }}">
+                <label for="social_media">Red Social (Instagram/Facebook) <span style="color: #000;">(Opcional)</span></label>
+                <input type="text" id="social_media" name="social_media" 
+                       placeholder="@usuario" value="{{ old('social_media') }}">
             </div>
+
+            <div class="form-group">
+                <label for="quantity">Cantidad de Inscripciones *</label>
+                <input type="number" id="quantity" name="quantity" value="1" min="1" max="100" required>
+                <small style="color: #666; font-size: 0.85rem; display: block; margin-top: 0.5rem;">
+                    Precio por persona: $20 USD
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label for="total_amount_display">Total a Pagar *</label>
+                <input type="text" id="total_amount_display" value="$20.00 USD" readonly style="background-color: #f0f0f0; font-weight: bold; font-size: 1.1rem;">
+                <input type="hidden" id="total_amount" name="total_amount" value="20.00">
+            </div>
+
+            <!-- Contenedor para personas adicionales -->
+            <div id="additional-people-container-home"></div>
 
             <div class="form-group">
                 <label for="payment_method">Método de Pago</label>
                 <select id="payment_method" name="payment_method">
                     <option value="">Seleccione un método</option>
-                    <option value="Transferencia Bancaria" {{ old('payment_method') == 'Transferencia Bancaria' ? 'selected' : '' }}>Transferencia Bancaria</option>
-                    <option value="Pago Móvil" {{ old('payment_method') == 'Pago Móvil' ? 'selected' : '' }}>Pago Móvil</option>
-                    <option value="Zelle" {{ old('payment_method') == 'Zelle' ? 'selected' : '' }}>Zelle</option>
-                    <option value="PayPal" {{ old('payment_method') == 'PayPal' ? 'selected' : '' }}>PayPal</option>
-                    <option value="Efectivo" {{ old('payment_method') == 'Efectivo' ? 'selected' : '' }}>Efectivo</option>
-                    <option value="Otro" {{ old('payment_method') == 'Otro' ? 'selected' : '' }}>Otro</option>
+                    <option value="transferencia" {{ old('payment_method') == 'transferencia' ? 'selected' : '' }}>Transferencia Bancaria</option>
+                    <option value="pago_movil" {{ old('payment_method') == 'pago_movil' ? 'selected' : '' }}>Pago Móvil</option>
+                    <option value="efectivo" {{ old('payment_method') == 'efectivo' ? 'selected' : '' }}>Efectivo</option>
+                    <option value="otro" {{ old('payment_method') == 'otro' ? 'selected' : '' }}>Otro</option>
                 </select>
+            </div>
+
+            <div class="form-group" id="reference-group">
+                <label for="payment_reference" id="reference-label">Número de Referencia de Pago *</label>
+                <input type="text" id="payment_reference" name="payment_reference" required 
+                       placeholder="Ingrese el número de referencia" value="{{ old('payment_reference') }}">
+                <small style="color: #666; font-size: 0.85rem; display: none;" id="reference-hint">No requerido para Efectivo u Otro</small>
+            </div>
+
+            <div class="form-group" id="proof-group">
+                <label for="payment_proof" id="proof-label">Comprobante de Pago *</label>
+                <input type="file" id="payment_proof" name="payment_proof" required accept="image/*,.pdf">
+                <small style="color: #666; font-size: 0.85rem; display: block; margin-top: 0.5rem;">
+                    Formatos permitidos: JPG, PNG, PDF (máx. 5MB)
+                </small>
+                <small style="color: #666; font-size: 0.85rem; display: none;" id="proof-hint">No requerido para Efectivo u Otro</small>
             </div>
 
             <div style="background: #fff3cd; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem;">
@@ -779,14 +809,18 @@
 
 @section('scripts')
 <script>
+    let isSubmittingHome = false; // Variable para controlar el envío
+
     function openEventModal() {
         document.getElementById('eventModal').classList.add('active');
         document.body.style.overflow = 'hidden';
+        isSubmittingHome = false; // Resetear al abrir el modal
     }
 
     function closeEventModal() {
         document.getElementById('eventModal').classList.remove('active');
         document.body.style.overflow = 'auto';
+        isSubmittingHome = false; // Resetear al cerrar el modal
     }
 
     // Close modal when clicking outside
@@ -801,6 +835,179 @@
         if (e.key === 'Escape') {
             closeEventModal();
         }
+    });
+
+    // Calcular total automáticamente y generar campos para personas adicionales
+    const PRICE_PER_PERSON = 20;
+    document.getElementById('quantity').addEventListener('input', function() {
+        const quantity = parseInt(this.value) || 1;
+        const total = (quantity * PRICE_PER_PERSON).toFixed(2);
+        document.getElementById('total_amount_display').value = '$' + total + ' USD';
+        document.getElementById('total_amount').value = total;
+        
+        // Generar campos para personas adicionales
+        const container = document.getElementById('additional-people-container-home');
+        container.innerHTML = '';
+        
+        if (quantity > 1) {
+            for (let i = 2; i <= quantity; i++) {
+                const personDiv = document.createElement('div');
+                personDiv.style.cssText = 'border: 2px solid #1C4C96; padding: 1.5rem; margin: 1.5rem 0; border-radius: 10px; background-color: #f0f5ff;';
+                personDiv.innerHTML = `
+                    <h3 style="color: #1C4C96; margin-bottom: 1rem; font-size: 1.2rem;">Persona ${i}</h3>
+                    
+                    <div class="form-group">
+                        <label for="person_${i}_name">Nombre y Apellido *</label>
+                        <input type="text" id="person_${i}_name" name="additional_people[${i-2}][name]" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="person_${i}_id">Cédula *</label>
+                        <input type="text" id="person_${i}_id" name="additional_people[${i-2}][id_number]" required placeholder="Ej: V-12345678">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="person_${i}_phone">Teléfono *</label>
+                        <input type="tel" id="person_${i}_phone" name="additional_people[${i-2}][phone]" required placeholder="Ej: 0414-1234567">
+                    </div>
+                `;
+                container.appendChild(personDiv);
+            }
+        }
+    });
+
+    // Manejar cambio en método de pago
+    document.getElementById('payment_method').addEventListener('change', function() {
+        const paymentMethod = this.value;
+        const referenceInput = document.getElementById('payment_reference');
+        const referenceLabel = document.getElementById('reference-label');
+        const referenceHint = document.getElementById('reference-hint');
+        const proofInput = document.getElementById('payment_proof');
+        const proofLabel = document.getElementById('proof-label');
+        const proofHint = document.getElementById('proof-hint');
+        
+        // Si es efectivo u otro, hacer los campos opcionales
+        if (paymentMethod === 'efectivo' || paymentMethod === 'otro') {
+            // Referencia opcional
+            referenceInput.removeAttribute('required');
+            referenceLabel.textContent = 'Número de Referencia de Pago';
+            referenceHint.style.display = 'block';
+            referenceInput.placeholder = 'Opcional';
+            
+            // Comprobante opcional
+            proofInput.removeAttribute('required');
+            proofLabel.textContent = 'Comprobante de Pago';
+            proofHint.style.display = 'block';
+        } else {
+            // Referencia obligatoria
+            referenceInput.setAttribute('required', 'required');
+            referenceLabel.textContent = 'Número de Referencia de Pago *';
+            referenceHint.style.display = 'none';
+            referenceInput.placeholder = 'Ingrese el número de referencia';
+            
+            // Comprobante obligatorio
+            proofInput.setAttribute('required', 'required');
+            proofLabel.textContent = 'Comprobante de Pago *';
+            proofHint.style.display = 'none';
+        }
+    });
+
+    // Manejar envío del formulario
+    document.getElementById('registrationFormHome').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Prevenir múltiples envíos
+        if (isSubmittingHome) {
+            console.log('Ya hay un envío en proceso...');
+            return;
+        }
+        
+        isSubmittingHome = true;
+        const formData = new FormData(this);
+        const submitBtn = this.querySelector('.btn-submit');
+        
+        // Capturar datos del formulario antes de enviar
+        const registrationData = {
+            nombre: formData.get('full_name'),
+            cedula: formData.get('id_number'),
+            telefono: formData.get('phone'),
+            email: formData.get('email') || 'No especificado',
+            redSocial: formData.get('social_media') || 'No especificado',
+            cantidad: formData.get('quantity'),
+            total: formData.get('total_amount'),
+            metodoPago: formData.get('payment_method') || 'No especificado',
+            referencia: formData.get('payment_reference') || 'No especificado'
+        };
+        
+        // Deshabilitar botón mientras se procesa
+        submitBtn.disabled = true;
+        submitBtn.style.opacity = '0.6';
+        submitBtn.style.cursor = 'not-allowed';
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Procesando...';
+        
+        fetch(this.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => {
+            // Verificar si la respuesta es exitosa
+            if (!response.ok) {
+                return response.json().then(err => {
+                    throw new Error(err.message || 'Error en el servidor');
+                });
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.success) {
+                alert('¡Registro exitoso! Tu inscripción está pendiente de aprobación. Te redirigiremos a WhatsApp para confirmar tu registro.');
+                closeEventModal();
+                this.reset();
+                
+                // Crear mensaje de WhatsApp con toda la información del registro
+                const mensaje = `Hola, acabo de completar mi inscripción para la Caminata 5K.
+
+*Datos de mi registro:*
+📝 Nombre: ${registrationData.nombre}
+🆔 Cédula: ${registrationData.cedula}
+📱 Teléfono: ${registrationData.telefono}
+📧 Email: ${registrationData.email}
+📲 Red Social: ${registrationData.redSocial}
+👥 Cantidad de Inscripciones: ${registrationData.cantidad}
+💵 Total Pagado: $${registrationData.total} USD
+💳 Método de Pago: ${registrationData.metodoPago}
+🔢 Referencia: ${registrationData.referencia}
+
+Necesito confirmar mi registro. ¡Gracias!`;
+                
+                // Abrir WhatsApp automáticamente después del registro exitoso
+                setTimeout(() => {
+                    const whatsappURL = `https://api.whatsapp.com/send/?phone=584144008240&text=${encodeURIComponent(mensaje)}&type=phone_number&app_absent=0`;
+                    window.open(whatsappURL, '_blank');
+                }, 1000);
+            } else {
+                alert('Error: ' + (data.message || 'No se pudo completar el registro'));
+                isSubmittingHome = false; // Permitir reintentar
+            }
+        })
+        .catch(error => {
+            console.error('Error completo:', error);
+            alert('Error: ' + error.message);
+            isSubmittingHome = false; // Permitir reintentar
+        })
+        .finally(() => {
+            // Rehabilitar botón solo si no fue exitoso
+            if (isSubmittingHome) {
+                submitBtn.disabled = false;
+                submitBtn.style.opacity = '1';
+                submitBtn.style.cursor = 'pointer';
+                submitBtn.innerHTML = '<i class="fas fa-check"></i> Confirmar Registro';
+            }
+        });
     });
 
     // Auto-open modal if there are errors
