@@ -964,10 +964,6 @@
         })
         .then(data => {
             if (data.success) {
-                alert('¡Registro exitoso! Tu inscripción está pendiente de aprobación. Te redirigiremos a WhatsApp para confirmar tu registro.');
-                closeEventModal();
-                this.reset();
-                
                 // Crear mensaje de WhatsApp con toda la información del registro
                 const mensaje = `Hola, acabo de completar mi inscripción para la Caminata 5K.
 
@@ -984,29 +980,36 @@
 
 Necesito confirmar mi registro. ¡Gracias!`;
                 
-                // Abrir WhatsApp automáticamente después del registro exitoso
-                setTimeout(() => {
-                    const whatsappURL = `https://api.whatsapp.com/send/?phone=584144008240&text=${encodeURIComponent(mensaje)}&type=phone_number&app_absent=0`;
-                    window.open(whatsappURL, '_blank');
-                }, 1000);
+                const whatsappURL = `https://api.whatsapp.com/send/?phone=584144008240&text=${encodeURIComponent(mensaje)}&type=phone_number&app_absent=0`;
+                
+                // Cerrar modal y resetear formulario
+                closeEventModal();
+                this.reset();
+                
+                // Mostrar mensaje de éxito
+                alert('¡Registro exitoso! Te redirigiremos a WhatsApp para confirmar tu registro.');
+                
+                // Redirigir a WhatsApp inmediatamente (compatible con Safari)
+                window.location.href = whatsappURL;
             } else {
                 alert('Error: ' + (data.message || 'No se pudo completar el registro'));
                 isSubmittingHome = false; // Permitir reintentar
+                // Rehabilitar botón
+                submitBtn.disabled = false;
+                submitBtn.style.opacity = '1';
+                submitBtn.style.cursor = 'pointer';
+                submitBtn.innerHTML = '<i class="fas fa-check"></i> Confirmar Registro';
             }
         })
         .catch(error => {
             console.error('Error completo:', error);
             alert('Error: ' + error.message);
             isSubmittingHome = false; // Permitir reintentar
-        })
-        .finally(() => {
-            // Rehabilitar botón solo si no fue exitoso
-            if (isSubmittingHome) {
-                submitBtn.disabled = false;
-                submitBtn.style.opacity = '1';
-                submitBtn.style.cursor = 'pointer';
-                submitBtn.innerHTML = '<i class="fas fa-check"></i> Confirmar Registro';
-            }
+            // Rehabilitar botón
+            submitBtn.disabled = false;
+            submitBtn.style.opacity = '1';
+            submitBtn.style.cursor = 'pointer';
+            submitBtn.innerHTML = '<i class="fas fa-check"></i> Confirmar Registro';
         });
     });
 
