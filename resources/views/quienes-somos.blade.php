@@ -453,49 +453,176 @@
 
 @section('scripts')
 <script>
-    // Carrusel de directores
-    let currentIndex = 0;
-    const carouselSlide = document.getElementById('carouselSlide');
-    const cards = document.querySelectorAll('.director-card');
-    const cardWidth = 310; // 280px + 30px gap
-
-    function nextSlide() {
-        if (currentIndex < cards.length - 1) {
+    document.addEventListener('DOMContentLoaded', function() {
+        const carouselSlide = document.getElementById('carouselSlide');
+        const cards = document.querySelectorAll('.director-card');
+        
+        if (!carouselSlide || cards.length === 0) return;
+        
+        let currentIndex = 0;
+        let cardWidth = cards[0].offsetWidth + 30; // Ancho de la tarjeta + gap
+        let isTransitioning = false;
+        let autoSlideInterval;
+        
+        // Clonar las primeras y últimas tarjetas para efecto infinito
+        const firstClone = cards[0].cloneNode(true);
+        const lastClone = cards[cards.length - 1].cloneNode(true);
+        
+        carouselSlide.appendChild(firstClone);
+        carouselSlide.insertBefore(lastClone, cards[0]);
+        
+        // Actualizar la lista de tarjetas después de clonar
+        const allCards = document.querySelectorAll('.director-card');
+        
+        // Posicionar en la primera tarjeta real (después del clon)
+        carouselSlide.style.transform = `translateX(-${cardWidth}px)`;
+        currentIndex = 1;
+        
+        function updateCarousel(smooth = true) {
+            if (smooth) {
+                carouselSlide.style.transition = 'transform 0.5s ease-in-out';
+            } else {
+                carouselSlide.style.transition = 'none';
+            }
+            const offset = -currentIndex * cardWidth;
+            carouselSlide.style.transform = `translateX(${offset}px)`;
+        }
+        
+        function nextSlide() {
+            if (isTransitioning) return;
+            isTransitioning = true;
+            
             currentIndex++;
-            updateCarousel();
+            updateCarousel(true);
+            
+            // Si llegamos al clon del final, saltar al inicio sin animación
+            if (currentIndex >= allCards.length - 1) {
+                setTimeout(() => {
+                    currentIndex = 1;
+                    updateCarousel(false);
+                    isTransitioning = false;
+                }, 500);
+            } else {
+                setTimeout(() => {
+                    isTransitioning = false;
+                }, 500);
+            }
         }
-    }
-
-    function prevSlide() {
-        if (currentIndex > 0) {
+        
+        function prevSlide() {
+            if (isTransitioning) return;
+            isTransitioning = true;
+            
             currentIndex--;
-            updateCarousel();
+            updateCarousel(true);
+            
+            // Si llegamos al clon del inicio, saltar al final sin animación
+            if (currentIndex <= 0) {
+                setTimeout(() => {
+                    currentIndex = allCards.length - 2;
+                    updateCarousel(false);
+                    isTransitioning = false;
+                }, 500);
+            } else {
+                setTimeout(() => {
+                    isTransitioning = false;
+                }, 500);
+            }
         }
-    }
-
-    function updateCarousel() {
-        const offset = -currentIndex * cardWidth;
-        carouselSlide.style.transform = `translateX(${offset}px)`;
-    }
-
-    // Auto-advance carousel
-    setInterval(nextSlide, 5000);
-
-    // Touch support for mobile
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    carouselSlide.addEventListener('touchstart', e => {
-        touchStartX = e.touches[0].clientX;
-    });
-
-    carouselSlide.addEventListener('touchend', e => {
-        touchEndX = e.changedTouches[0].clientX;
-        if (touchStartX - touchEndX > 50) {
-            nextSlide();
-        } else if (touchEndX - touchStartX > 50) {
-            prevSlide();
+        
+        // Asignar funciones a los botones
+        window.nextSlide = nextSlide;
+        window.prevSlide = prevSlide;
+        
+        // Auto-advance carousel
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(nextSlide, 4000);
         }
+        
+        function stopAutoSlide() {
+            clearInterval(autoSlideInterval);
+        }
+        
+        startAutoSlide();
+        
+        // Pausar auto-slide al hacer hover
+        carouselSlide.addEventListener('mouseenter', stopAutoSlide);
+        carouselSlide.addEventListener('mouseleave', startAutoSlide);
+        
+        // Touch support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        carouselSlide.addEventListener('touchstart', e => {
+            touchStartX = e.touches[0].clientX;
+            stopAutoSlide();
+        });
+        
+        carouselSlide.addEventListener('touchmove', e => {
+            touchEndX = e.touches[0].clientX;
+        });
+        
+        carouselSlide.addEventListener('touchend', e => {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    nextSlide();
+                } else {
+                    prevSlide();
+                }
+            }
+            
+            startAutoSlide();
+        });
+        
+        // Recalcular ancho de tarjeta al cambiar tamaño de ventana
+        window.addEventListener('resize', () => {
+            cardWidth = cards[0].offsetWidth + 30;
+            updateCarousel(false);
+        });
+        
+        // Indicadores de posición (opcional)
+        const totalCards = cards.length;
+        let indicatorsContainer = document.createElement('div');
+        indicatorsContainer.style.cssText = 'display: flex; justify-content: center; gap: 8px; margin-top: 20px;';
+        
+        for (let i = 0; i < totalCards; i++) {
+            let indicator = document.createElement('div');
+            indicator.style.cssText = 'width: 10px; height: 10px; border-radius: 50%; background: #ddd; cursor: pointer; transition: background 0.3s;';
+            indicator.addEventListener('click', () => {
+                if (!isTransitioning) {
+                    currentIndex = i + 1;
+                    updateCarousel(true);
+                    setTimeout(() => {
+                        isTransitioning = false;
+                    }, 500);
+                }
+            });
+            indicatorsContainer.appendChild(indicator);
+        }
+        
+        document.querySelector('.carousel-container').appendChild(indicatorsContainer);
+        
+        // Actualizar indicadores
+        function updateIndicators() {
+            const indicators = indicatorsContainer.children;
+            let activeIndex = currentIndex - 1;
+            
+            if (currentIndex === 0) activeIndex = totalCards - 1;
+            if (currentIndex === allCards.length - 1) activeIndex = 0;
+            
+            for (let i = 0; i < indicators.length; i++) {
+                indicators[i].style.background = i === activeIndex ? '#4B0082' : '#ddd';
+            }
+        }
+        
+        // Observar cambios en el carrusel para actualizar indicadores
+        const observer = new MutationObserver(updateIndicators);
+        observer.observe(carouselSlide, { attributes: true, attributeFilter: ['style'] });
+        
+        updateIndicators();
     });
 </script>
 @endsection
