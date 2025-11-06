@@ -345,6 +345,17 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="shirt_size">Talla de Camisa *</label>
+                    <select id="shirt_size" name="shirt_size" required>
+                        <option value="">Seleccione una talla</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XXL">XXL</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
                     <label for="email">Correo Electrónico <span style="color: #000;">(Opcional)</span></label>
                     <input type="email" id="email" name="email" placeholder="ejemplo@correo.com">
                 </div>
@@ -461,6 +472,17 @@
                         <label for="person_${i}_phone">Teléfono *</label>
                         <input type="tel" id="person_${i}_phone" name="additional_people[${i-2}][phone]" required placeholder="Ej: 0414-1234567">
                     </div>
+                    
+                    <div class="form-group">
+                        <label for="person_${i}_shirt_size">Talla de Camisa *</label>
+                        <select id="person_${i}_shirt_size" name="additional_people[${i-2}][shirt_size]" required>
+                            <option value="">Seleccione una talla</option>
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XXL">XXL</option>
+                        </select>
+                    </div>
                 `;
                 container.appendChild(personDiv);
             }
@@ -522,6 +544,7 @@
             nombre: formData.get('full_name'),
             cedula: formData.get('id_number'),
             telefono: formData.get('phone'),
+            tallaCamisa: formData.get('shirt_size'),
             email: formData.get('email'),
             redSocial: formData.get('social_media') || 'No especificado',
             cantidad: formData.get('quantity'),
@@ -562,6 +585,7 @@
 📝 Nombre: ${registrationData.nombre}
 🆔 Cédula: ${registrationData.cedula}
 📱 Teléfono: ${registrationData.telefono}
+👕 Talla de Camisa: ${registrationData.tallaCamisa}
 📧 Email: ${registrationData.email}
 📲 Red Social: ${registrationData.redSocial}
 👥 Cantidad de Inscripciones: ${registrationData.cantidad}

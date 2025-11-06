@@ -18,6 +18,7 @@ class EventRegistrationController extends Controller
                 'full_name' => 'required|string|max:255',
                 'id_number' => 'required|string|max:50',
                 'phone' => 'required|string|max:20',
+                'shirt_size' => 'required|in:S,M,L,XXL',
                 'email' => 'nullable|email|max:255',
                 'social_media' => 'nullable|string|max:255',
                 'payment_reference' => 'nullable|string|max:255',
@@ -29,6 +30,8 @@ class EventRegistrationController extends Controller
                 'id_number.required' => 'La cédula es obligatoria.',
                 'full_name.required' => 'El nombre completo es obligatorio.',
                 'phone.required' => 'El teléfono es obligatorio.',
+                'shirt_size.required' => 'La talla de camisa es obligatoria.',
+                'shirt_size.in' => 'La talla de camisa debe ser S, M, L o XXL.',
                 'email.email' => 'El correo electrónico debe ser válido.',
                 'payment_proof.mimes' => 'El comprobante debe ser un archivo JPG, PNG o PDF.',
                 'payment_proof.max' => 'El comprobante no debe superar los 5MB.',
@@ -50,6 +53,7 @@ class EventRegistrationController extends Controller
                 'full_name' => $validated['full_name'],
                 'id_number' => $validated['id_number'],
                 'phone' => $validated['phone'],
+                'shirt_size' => $validated['shirt_size'],
                 'email' => $validated['email'],
                 'social_media' => $validated['social_media'],
                 'payment_reference' => $validated['payment_reference'],
@@ -67,6 +71,7 @@ class EventRegistrationController extends Controller
                         'full_name' => $person['name'],
                         'id_number' => $person['id_number'],
                         'phone' => $person['phone'],
+                        'shirt_size' => $person['shirt_size'] ?? null,
                         'email' => $validated['email'], // Mismo email del titular
                         'social_media' => $validated['social_media'], // Misma red social del titular
                         'payment_reference' => $validated['payment_reference'], // Misma referencia
