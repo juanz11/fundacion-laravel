@@ -124,6 +124,7 @@
                                 <th>Nombre Completo</th>
                                 <th>Cédula</th>
                                 <th>Teléfono</th>
+                                <th>Talla</th>
                                 <th>Red Social</th>
                                 <th>Método Pago</th>
                                 <th>Referencia</th>
@@ -139,6 +140,7 @@
                                     <td>{{ $registration->full_name }}</td>
                                     <td>{{ $registration->id_number }}</td>
                                     <td>{{ $registration->phone }}</td>
+                                    <td><span class="badge badge-secondary">{{ $registration->shirt_size ?? 'N/A' }}</span></td>
                                     <td>{{ $registration->social_media }}</td>
                                     <td>{{ $registration->payment_method ?? 'N/A' }}</td>
                                     <td>
@@ -393,6 +395,10 @@
                     <div class="col-md-6 mb-3">
                         <strong>Teléfono:</strong><br>
                         ${registration.phone}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <strong>Talla de Camisa:</strong><br>
+                        <span class="badge badge-secondary">${registration.shirt_size || 'N/A'}</span>
                     </div>
                     <div class="col-md-12 mb-3">
                         <strong>Red Social:</strong><br>

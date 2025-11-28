@@ -959,8 +959,23 @@
             cantidad: formData.get('quantity'),
             total: formData.get('total_amount'),
             metodoPago: formData.get('payment_method') || 'No especificado',
-            referencia: formData.get('payment_reference') || 'No especificado'
+            referencia: formData.get('payment_reference') || 'No especificado',
+            participantesAdicionales: []
         };
+        
+        // Capturar datos de participantes adicionales
+        const quantity = parseInt(formData.get('quantity'));
+        if (quantity > 1) {
+            for (let i = 0; i < quantity - 1; i++) {
+                const participante = {
+                    nombre: formData.get(`additional_people[${i}][name]`),
+                    cedula: formData.get(`additional_people[${i}][id_number]`),
+                    telefono: formData.get(`additional_people[${i}][phone]`),
+                    talla: formData.get(`additional_people[${i}][shirt_size]`)
+                };
+                registrationData.participantesAdicionales.push(participante);
+            }
+        }
         
         // Deshabilitar botón mientras se procesa
         submitBtn.disabled = true;
@@ -988,7 +1003,7 @@
         .then(data => {
             if (data.success) {
                 // Crear mensaje de WhatsApp con toda la información del registro
-                const mensaje = `Hola, acabo de completar mi inscripción para la Caminata 5K.
+                let mensaje = `Hola, acabo de completar mi inscripción para la Caminata 5K.
 
 *Datos de mi registro:*
 📝 Nombre: ${registrationData.nombre}
@@ -1000,9 +1015,17 @@
 👥 Cantidad de Inscripciones: ${registrationData.cantidad}
 💵 Total Pagado: $${registrationData.total} USD
 💳 Método de Pago: ${registrationData.metodoPago}
-🔢 Referencia: ${registrationData.referencia}
-
-Necesito confirmar mi registro. ¡Gracias!`;
+🔢 Referencia: ${registrationData.referencia}`;
+                
+                // Agregar participantes adicionales si existen
+                if (registrationData.participantesAdicionales.length > 0) {
+                    mensaje += '\n\n*Participantes Adicionales:*';
+                    registrationData.participantesAdicionales.forEach((p, index) => {
+                        mensaje += `\n\n*Persona ${index + 2}:*\n📝 Nombre: ${p.nombre}\n🆔 Cédula: ${p.cedula}\n📱 Teléfono: ${p.telefono}\n👕 Talla: ${p.talla}`;
+                    });
+                }
+                
+                mensaje += '\n\nNecesito confirmar mi registro. ¡Gracias!';
                 
                 const whatsappURL = `https://api.whatsapp.com/send/?phone=584144008240&text=${encodeURIComponent(mensaje)}&type=phone_number&app_absent=0`;
                 
