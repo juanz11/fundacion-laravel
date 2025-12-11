@@ -299,14 +299,8 @@
                 </p>
             </div>
 
-            <!-- Métodos de Pago -->
-            <div style="margin: 2rem 0; text-align: center;">
-                <h3 style="margin-bottom: 1rem; color: var(--text-dark);">Métodos de Pago Disponibles</h3>
-                <img src="{{ asset('images/caminata5k-METODOSDEPAGO.png') }}" alt="Métodos de Pago" style="max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            </div>
-
-            <button onclick="openRegistrationModal()" class="btn-inscribirse">
-                <i class="fas fa-running"></i> ¡Inscríbete Ahora!
+            <button class="btn-inscribirse">
+                <i class="fas fa-running"></i> Inscripciones terminadas, cualquier otra información comunícate con 04144008240
             </button>
         </div>
     </div>

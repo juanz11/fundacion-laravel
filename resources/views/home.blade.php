@@ -598,27 +598,6 @@
     </div>
 </section>
 
-<!-- Event Section: Caminata 5K -->
-<section class="event-section">
-    <div class="event-container">
-        <div>
-            <img src="{{ asset('images/caminata5k-01.png') }}" alt="Caminata 5K - Una Llamada, Una Vida" class="event-image">
-        </div>
-        <div class="event-content">
-            <h2>¡Únete a Nuestra Caminata 5K!</h2>
-            <p><strong>1era Caminata "Una Llamada, Una Vida"</strong></p>
-            <p>Tu vida importa: ¡Caminamos contigo!</p>
-            <p><strong>📅 Fecha:</strong> Domingo 30/11<br>
-               <strong>🕖 Hora:</strong> 7:00 AM<br>
-               <strong>📍 Salida:</strong> Centro Profesional Prebo<br>
-               <strong>🏁 Llegada:</strong> Cancha de la Trigaleña</p>
-            <button class="event-btn" onclick="openEventModal()">
-                <i class="fas fa-running"></i> ¡Inscríbete Ahora!
-            </button>
-        </div>
-    </div>
-</section>
-
 <!-- Commitment Section -->
 <section class="commitment-section">
     <h2>Compromiso Comunitario</h2>
