@@ -32,6 +32,10 @@ Route::get('/eventos', function () {
     return view('eventos');
 });
 
+Route::get('/formulario', function () {
+    return view('formulario');
+});
+
 // Ruta pública para registro de eventos
 Route::post('/evento/registro', [EventRegistrationController::class, 'store'])->name('event.register');
 
