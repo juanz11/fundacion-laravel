@@ -144,7 +144,24 @@
                 <p class="form-card-subtitle">Registra tus datos para colaborar con nuestros programas de atención y apoyo.</p>
             </div>
         </div>
-        <form>
+
+        @if(session('success'))
+            <div class="alert alert-success" style="margin-bottom: 1.5rem;">
+                <i class="fas fa-check-circle"></i> {{ session('success') }}
+            </div>
+        @endif
+
+        @if ($errors->any())
+            <div class="alert alert-error" style="margin-bottom: 1.5rem;">
+                <ul style="margin: 0; padding-left: 1.2rem;">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <form method="POST" action="{{ route('professional-survey.store') }}">
             @csrf
             <div class="form-grid">
                 <div class="form-group">

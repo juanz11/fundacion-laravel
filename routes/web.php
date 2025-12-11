@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\EventRegistrationController;
+use App\Http\Controllers\ProfessionalSurveyController;
 
 // Rutas públicas
 Route::get('/', function () {
@@ -35,6 +36,8 @@ Route::get('/eventos', function () {
 Route::get('/formulario', function () {
     return view('formulario');
 });
+
+Route::post('/formulario', [ProfessionalSurveyController::class, 'store'])->name('professional-survey.store');
 
 // Ruta pública para registro de eventos
 Route::post('/evento/registro', [EventRegistrationController::class, 'store'])->name('event.register');
@@ -83,6 +86,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('/events', [EventRegistrationController::class, 'adminIndex'])->name('events.index');
     Route::patch('/events/{registration}/status', [EventRegistrationController::class, 'updateStatus'])->name('events.update-status');
     Route::delete('/events/{registration}', [EventRegistrationController::class, 'destroy'])->name('events.destroy');
+
+    // Rutas de encuestas de profesionales (admin)
+    Route::get('/surveys', [ProfessionalSurveyController::class, 'adminIndex'])->name('surveys.index');
 });
 
 // Rutas de usuario (solo para usuarios autenticados no-admin)

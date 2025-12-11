@@ -415,6 +415,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ route('admin.surveys.index') }}" class="{{ request()->routeIs('admin.surveys.*') ? 'active' : '' }}">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>Encuesta Profesionales</span>
+                    </a>
+                </li>
+                <li>
                     <a href="{{ url('/') }}">
                         <i class="fas fa-globe"></i>
                         <span>Ver Sitio Web</span>
