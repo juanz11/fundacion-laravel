@@ -153,6 +153,9 @@
             <div class="alert alert-success" style="margin-bottom: 1.5rem;">
                 <i class="fas fa-check-circle"></i> {{ session('success') }}
             </div>
+            <script>
+                alert(@json(session('success')));
+            </script>
         @endif
 
         @if ($errors->any())
