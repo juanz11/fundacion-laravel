@@ -145,6 +145,10 @@
             </div>
         </div>
 
+        <div style="background: #fff3cd; border: 1px solid #ffeeba; color: #856404; border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 1.5rem; font-size: 0.95rem;">
+            La Fundación David Brandt se encuentra en la búsqueda de Psicólogos Clínicos voluntarios que estén dispuestos a apoyarnos a través de nuestro programa "Una Llamada, Una Vida", en la atención de personas que atraviesan una crisis de salud mental, brindando los Primeros Auxilios Psicológicos y orientación en crisis. Si estás interesado, por favor rellena el siguiente formulario y nuestro equipo se estará comunicando en la brevedad posible.
+        </div>
+
         @if(session('success'))
             <div class="alert alert-success" style="margin-bottom: 1.5rem;">
                 <i class="fas fa-check-circle"></i> {{ session('success') }}

@@ -5,8 +5,13 @@
 
 @section('content')
 <div class="card">
-    <div class="card-header">
+    <div class="card-header" style="display:flex; justify-content:space-between; align-items:center;">
         <h2>Respuestas de la Encuesta</h2>
+        @if(!$surveys->isEmpty())
+            <a href="{{ route('admin.surveys.export') }}" class="btn btn-primary btn-sm">
+                <i class="fas fa-file-excel"></i> Exportar a Excel
+            </a>
+        @endif
     </div>
     <div class="table-container">
         @if($surveys->isEmpty())
@@ -18,6 +23,9 @@
                         <th>ID</th>
                         <th>Nombre completo</th>
                         <th>Cédula</th>
+                        <th>Dirección</th>
+                        <th>N° Colegiatura</th>
+                        <th>Dónde pasa consulta</th>
                         <th>Edad</th>
                         <th>Email</th>
                         <th>Teléfono</th>
@@ -32,6 +40,9 @@
                             <td>{{ $survey->id }}</td>
                             <td>{{ $survey->nombre_completo }}</td>
                             <td>{{ $survey->cedula }}</td>
+                            <td>{{ $survey->direccion }}</td>
+                            <td>{{ $survey->numero_colegiatura }}</td>
+                            <td>{{ $survey->lugar_consulta }}</td>
                             <td>{{ $survey->edad }}</td>
                             <td>{{ $survey->email }}</td>
                             <td>{{ $survey->telefono }}</td>

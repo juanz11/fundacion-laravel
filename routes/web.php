@@ -35,7 +35,7 @@ Route::get('/eventos', function () {
 
 Route::get('/formulario', function () {
     return view('formulario');
-});
+})->name('professional-survey.form');
 
 Route::post('/formulario', [ProfessionalSurveyController::class, 'store'])->name('professional-survey.store');
 
@@ -89,6 +89,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 
     // Rutas de encuestas de profesionales (admin)
     Route::get('/surveys', [ProfessionalSurveyController::class, 'adminIndex'])->name('surveys.index');
+    Route::get('/surveys/export', [ProfessionalSurveyController::class, 'export'])->name('surveys.export');
 });
 
 // Rutas de usuario (solo para usuarios autenticados no-admin)
