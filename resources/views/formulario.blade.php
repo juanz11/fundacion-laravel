@@ -32,15 +32,37 @@
 
     .form-card {
         background: #ffffff;
-        padding: 2rem;
-        border-radius: 15px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        padding: 2.5rem 2rem;
+        border-radius: 18px;
+        box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+        border-top: 6px solid var(--primary-color);
     }
 
-    .form-card h2 {
-        margin-bottom: 1.5rem;
+    .form-card-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.8rem;
+    }
+
+    .form-logo {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        object-fit: cover;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .form-card-title {
+        margin: 0;
+        font-size: 1.6rem;
         color: var(--primary-color);
-        text-align: center;
+    }
+
+    .form-card-subtitle {
+        margin: 0.2rem 0 0;
+        color: var(--text-light);
+        font-size: 0.95rem;
     }
 
     .form-grid {
@@ -115,7 +137,13 @@
 
 <div class="form-wrapper">
     <div class="form-card">
-        <h2>Datos del Profesional</h2>
+        <div class="form-card-header">
+            <img src="https://i0.wp.com/fundaciondavidbrandt.org/wp-content/uploads/2025/07/ISOTIPO-scaled.webp?fit=2560%2C2560&ssl=1" alt="Logo Fundación David Brandt" class="form-logo">
+            <div>
+                <h2 class="form-card-title">Formulario para Profesionales</h2>
+                <p class="form-card-subtitle">Registra tus datos para colaborar con nuestros programas de atención y apoyo.</p>
+            </div>
+        </div>
         <form>
             @csrf
             <div class="form-grid">
