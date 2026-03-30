@@ -5,19 +5,70 @@
 @section('styles')
 <style>
     .hero-home {
-        background: linear-gradient(135deg, rgba(28, 76, 150, 0.75) 0%, rgba(28, 76, 150, 0.75) 100%),
-                    url('{{ asset('images/banner-hero.png') }}') center/cover;
-        color: white;
-        padding: 10rem 2rem;
-        text-align: center;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        min-height: 500px;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+    }
+
+    .hero-carousel {
+        position: relative;
+        width: 100%;
+        height: clamp(220px, 35vw, 520px);
+        overflow: hidden;
+        background: #000;
+    }
+
+    .hero-slide {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transition: opacity 600ms ease;
+    }
+
+    .hero-slide.is-active {
+        opacity: 1;
+    }
+
+    .hero-slide img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .hero-dots {
+        position: absolute;
+        left: 50%;
+        bottom: 14px;
+        transform: translateX(-50%);
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        gap: 10px;
+        padding: 10px 12px;
+        border-radius: 999px;
+        background: rgba(0, 0, 0, 0.25);
+        backdrop-filter: blur(6px);
+    }
+
+    .hero-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.9);
+        background: rgba(255, 255, 255, 0.35);
+        cursor: pointer;
+        padding: 0;
+        appearance: none;
+    }
+
+    .hero-dot.is-active {
+        background: rgba(255, 255, 255, 0.95);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .hero-slide {
+            transition: none;
+        }
     }
 
     .hero-home h1 {
@@ -36,8 +87,7 @@
 
     @media (max-width: 768px) {
         .hero-home {
-            padding: 6rem 1.5rem;
-            min-height: 400px;
+            padding: 0;
         }
 
         .hero-home h1 {
@@ -51,8 +101,7 @@
 
     @media (max-width: 480px) {
         .hero-home {
-            padding: 4rem 1rem;
-            min-height: 350px;
+            padding: 0;
         }
 
         .hero-home h1 {
@@ -74,6 +123,20 @@
         font-size: 2.5rem;
         margin-bottom: 3rem;
         color: var(--text-dark);
+    }
+
+    .service-card .icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
+
+    .service-card .icon img {
+        width: 64px;
+        height: 64px;
+        object-fit: contain;
+        display: block;
     }
 
     .video-section {
@@ -133,7 +196,7 @@
     }
 
     .commitment-section {
-        background: #1C4C96;
+        background: #012E67;
         color: white;
         padding: 5rem 2rem;
         text-align: center;
@@ -292,7 +355,7 @@
     /* Event Section Styles */
     .event-section {
         padding: 5rem 2rem;
-        background: linear-gradient(135deg, #1C4C96 0%, #2563eb 100%);
+        background: linear-gradient(135deg, #012E67 0%, #2563eb 100%);
         position: relative;
         overflow: hidden;
     }
@@ -331,7 +394,7 @@
 
     .event-btn {
         background: #FDD835;
-        color: #1C4C96;
+        color: #012E67;
         padding: 1rem 2.5rem;
         border-radius: 8px;
         text-decoration: none;
@@ -390,7 +453,7 @@
     }
 
     .modal-header h2 {
-        color: #1C4C96;
+        color: #012E67;
         margin: 0;
         font-size: 1.8rem;
     }
@@ -439,7 +502,7 @@
     .form-group input:focus,
     .form-group select:focus {
         outline: none;
-        border-color: #1C4C96;
+        border-color: #012E67;
     }
 
     .form-actions {
@@ -450,7 +513,7 @@
     }
 
     .btn-submit {
-        background: #1C4C96;
+        background: #012E67;
         color: white;
         padding: 0.8rem 2rem;
         border: none;
@@ -529,9 +592,27 @@
 @section('content')
 <!-- Hero Section -->
 <section class="hero-home">
-    <h1>Fundación David Brandt</h1>
-    <p>Brindando apoyo emocional y asistencia en crisis a quienes más lo necesitan</p>
-    <a href="https://wa.me/584144008240?text=Hola%20necesito%20mas%20informacion" class="btn btn-primary">Necesito más información</a>
+    <div class="hero-carousel" id="heroCarousel">
+        <div class="hero-slide is-active">
+            <img src="{{ asset('fundacion-webbanners01.png') }}" alt="Banner Fundación 1">
+        </div>
+        <div class="hero-slide">
+            <img src="{{ asset('fundacion-webbanners02.png') }}" alt="Banner Fundación 2">
+        </div>
+        <div class="hero-slide">
+            <img src="{{ asset('fundacion-webbanners03.png') }}" alt="Banner Fundación 3">
+        </div>
+        <div class="hero-slide">
+            <img src="{{ asset('fundacion-webbanners04.png') }}" alt="Banner Fundación 4">
+        </div>
+
+        <div class="hero-dots" aria-label="Carrusel de banners">
+            <button type="button" class="hero-dot is-active" aria-label="Banner 1" data-slide="0"></button>
+            <button type="button" class="hero-dot" aria-label="Banner 2" data-slide="1"></button>
+            <button type="button" class="hero-dot" aria-label="Banner 3" data-slide="2"></button>
+            <button type="button" class="hero-dot" aria-label="Banner 4" data-slide="3"></button>
+        </div>
+    </div>
 </section>
 
 <!-- Services Section -->
@@ -540,7 +621,7 @@
     <div class="services-grid">
         <div class="service-card">
             <div class="icon">
-                <i class="fas fa-user-plus"></i>
+                <img src="{{ asset('icon03.png') }}" alt="Soporte Emocional">
             </div>
             <h3>Soporte Emocional</h3>
             <p>Te ofrecemos un espacio seguro donde puedes compartir tus sentimientos sin juicios y recibir el apoyo que necesitas. Nuestro objetivo es acompañarte en cada paso de tu camino hacia el bienestar emocional.</p>
@@ -548,7 +629,7 @@
 
         <div class="service-card">
             <div class="icon">
-                <i class="fas fa-street-view"></i>
+                <img src="{{ asset('icon02.png') }}" alt="Asistencia en Crisis">
             </div>
             <h3>Asistencia en Crisis</h3>
             <p>Nuestro equipo está listo para ayudarte a navegar a través de momentos de crisis, ofreciendo asistencia inmediata y orientación. No tienes que enfrentar esto solo; estamos aquí para apoyarte.</p>
@@ -556,7 +637,7 @@
 
         <div class="service-card">
             <div class="icon">
-                <i class="fas fa-heart"></i>
+                <img src="{{ asset('icon01.png') }}" alt="Compromiso Comunitario">
             </div>
             <h3>Compromiso Comunitario</h3>
             <p>Conectamos a las personas con recursos y redes de apoyo, fomentando una comunidad más fuerte orientada hacia la sanación. Juntos, podemos crear un entorno de apoyo y comprensión.</p>
@@ -804,6 +885,72 @@
 <script>
     let isSubmittingHome = false; // Variable para controlar el envío
 
+    document.addEventListener('DOMContentLoaded', function() {
+        const carousel = document.getElementById('heroCarousel');
+        if (!carousel) return;
+
+        const slides = Array.from(carousel.querySelectorAll('.hero-slide'));
+        const dots = Array.from(carousel.querySelectorAll('.hero-dot'));
+        if (slides.length === 0) return;
+
+        let currentIndex = 0;
+        let timer = null;
+        let isPaused = false;
+        const shouldReduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const intervalMs = 5000;
+
+        function setActive(index) {
+            currentIndex = (index + slides.length) % slides.length;
+            slides.forEach((s, i) => s.classList.toggle('is-active', i === currentIndex));
+            dots.forEach((d, i) => d.classList.toggle('is-active', i === currentIndex));
+        }
+
+        function next() {
+            setActive(currentIndex + 1);
+        }
+
+        function start() {
+            if (shouldReduceMotion) return;
+            stop();
+            timer = window.setInterval(function() {
+                if (!isPaused) next();
+            }, intervalMs);
+        }
+
+        function stop() {
+            if (timer) {
+                window.clearInterval(timer);
+                timer = null;
+            }
+        }
+
+        dots.forEach(function(dot) {
+            dot.addEventListener('click', function() {
+                const target = parseInt(this.getAttribute('data-slide'), 10);
+                if (!Number.isNaN(target)) setActive(target);
+                start();
+            });
+        });
+
+        carousel.addEventListener('mouseenter', function() {
+            isPaused = true;
+        });
+        carousel.addEventListener('mouseleave', function() {
+            isPaused = false;
+        });
+
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                stop();
+            } else {
+                start();
+            }
+        });
+
+        setActive(0);
+        start();
+    });
+
     function openEventModal() {
         document.getElementById('eventModal').classList.add('active');
         document.body.style.overflow = 'hidden';
@@ -845,9 +992,9 @@
         if (quantity > 1) {
             for (let i = 2; i <= quantity; i++) {
                 const personDiv = document.createElement('div');
-                personDiv.style.cssText = 'border: 2px solid #1C4C96; padding: 1.5rem; margin: 1.5rem 0; border-radius: 10px; background-color: #f0f5ff;';
+                personDiv.style.cssText = 'border: 2px solid #012E67; padding: 1.5rem; margin: 1.5rem 0; border-radius: 10px; background-color: #f0f5ff;';
                 personDiv.innerHTML = `
-                    <h3 style="color: #1C4C96; margin-bottom: 1rem; font-size: 1.2rem;">Persona ${i}</h3>
+                    <h3 style="color: #012E67; margin-bottom: 1rem; font-size: 1.2rem;">Persona ${i}</h3>
                     
                     <div class="form-group">
                         <label for="person_${i}_name">Nombre y Apellido *</label>

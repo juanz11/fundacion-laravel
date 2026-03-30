@@ -17,7 +17,7 @@
     <!-- Styles -->
     <style>
         :root {
-            --primary-color: #0a74da;
+            --primary-color: #012E67;
             --secondary-color: #25d366;
             --text-dark: #333;
             --text-light: #666;
