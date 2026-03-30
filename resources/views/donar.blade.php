@@ -460,8 +460,9 @@
         
         <div class="contact-card">
             <h3>Contacto</h3>
-            <p><strong>Teléfono Emergencias:</strong><br>
-            (+58) 0414-4265181</p>
+            <p><strong>Teléfonos de una llamada una vida :</strong><br>
+            (+58) 0414-4265181
+             0424-7695900</p>
             <p><strong>Teléfono Información:</strong><br>
             (+58) 0414-4008240</p>
             <p><strong>Email:</strong><br>

@@ -214,7 +214,8 @@
 
             <h3>Cómo Acceder</h3>
             <ul>
-                <li>Emergencias : 0414-4265181</li>
+                <li>Una llamada una vida : 0414-4265181</li>
+                <li>Una llamada una vida : 0424-7695900</li>
                 <li>Información General: 0414-4008240</li>
                 <li>WhatsApp: Contacto directo</li>
                 <li>Correo electrónico: fundabl25@fundaciondavidbrandt.org</li>

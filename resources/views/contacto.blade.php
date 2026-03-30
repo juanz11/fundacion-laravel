@@ -270,7 +270,10 @@
         <h2>¿Necesitas Ayuda Inmediata?</h2>
         <p>Si estás en crisis, llámanos ahora. Estamos disponibles </p>
         <div class="phone">
-            <i class="fas fa-phone-alt"></i> 0414-4265181 (Emergencias)
+            <i class="fas fa-phone-alt"></i> 0414-4265181 (Una llamada una vida)
+        </div>
+         <div class="phone">
+            <i class="fas fa-phone-alt"></i> 0424-47695900 (Una llmada una vida)
         </div>
         <a href="https://wa.me/584144265181?text=Hola%20necesito%20ayuda%20urgente" class="btn btn-primary">
             <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
@@ -340,8 +343,9 @@
                     <i class="fas fa-phone-alt"></i>
                 </div>
                 <h3>Teléfonos</h3>
-                <p><strong>Emergencias :</strong></p>
+                <p><strong>Numeros de una llamada una vida :</strong></p>
                 <p><a href="tel:+584144265181">0414-4265181</a></p>
+                  <p><a href="tel:+584144265181">0424-7695900</a></p>
                 <p><strong>Información General:</strong></p>
                 <p><a href="tel:+584144008240">0414-4008240</a></p>
             </div>

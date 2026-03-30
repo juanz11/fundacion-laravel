@@ -651,7 +651,10 @@
                 <i class="fas fa-phone-alt"></i>
             </div>
             <h3>Llámanos</h3>
-            <p><strong>Emergencias:</strong> 0414-4265181</p>
+            <p><strong>Una llamada una vida:</strong> 0414-4265181</p>
+            <p><strong>Una llamada una vida:</strong>  0424-7695900</p>
+
+           
             <p><strong>Información:</strong> 0414-4008240</p>
         </div>
     </div>
