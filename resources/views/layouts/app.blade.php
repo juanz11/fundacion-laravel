@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <title>@yield('title', 'Inicio') - Fundación David Brandt</title>
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -436,7 +436,7 @@
                 <h3>Síguenos</h3>
                 <div class="social-icons">
                     <a href="https://www.tiktok.com/@fundavidbrandt" target="_blank"><i class="fab fa-tiktok"></i></a>
-                    <a href="https://x.com/fundavidbrandt" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                    <a href="https://x.com/fundavidbrandt" target="_blank"><i class="fab fa-x"></i></a>
                     <a href="https://www.instagram.com/fundaciondavidbrandt" target="_blank"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
