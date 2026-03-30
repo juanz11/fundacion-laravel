@@ -204,7 +204,7 @@
             
             <h3>Servicios Disponibles</h3>
             <ul>
-                <li>Línea de crisis 24/7</li>
+                <li>Línea de crisis </li>
                 <li>Primeros auxilios psicológicos</li>
                 <li>Intervención en crisis</li>
                 <li>Evaluación de riesgo</li>
@@ -214,7 +214,7 @@
 
             <h3>Cómo Acceder</h3>
             <ul>
-                <li>Emergencias 24/7: 0414-4265181</li>
+                <li>Emergencias : 0414-4265181</li>
                 <li>Información General: 0414-4008240</li>
                 <li>WhatsApp: Contacto directo</li>
                 <li>Correo electrónico: fundabl25@fundaciondavidbrandt.org</li>
@@ -272,7 +272,7 @@
             
             <h3>Características</h3>
             <ul>
-                <li>Disponibilidad 24/7</li>
+                <li>Disponibilidad </li>
                 <li>Atención profesional y confidencial</li>
                 <li>Sin costo para el usuario</li>
                 <li>Respuesta inmediata</li>

@@ -268,7 +268,7 @@
     <!-- Emergency Banner -->
     <div class="emergency-banner">
         <h2>¿Necesitas Ayuda Inmediata?</h2>
-        <p>Si estás en crisis, llámanos ahora. Estamos disponibles 24/7</p>
+        <p>Si estás en crisis, llámanos ahora. Estamos disponibles </p>
         <div class="phone">
             <i class="fas fa-phone-alt"></i> 0414-4265181 (Emergencias)
         </div>
@@ -340,7 +340,7 @@
                     <i class="fas fa-phone-alt"></i>
                 </div>
                 <h3>Teléfonos</h3>
-                <p><strong>Emergencias 24/7:</strong></p>
+                <p><strong>Emergencias :</strong></p>
                 <p><a href="tel:+584144265181">0414-4265181</a></p>
                 <p><strong>Información General:</strong></p>
                 <p><a href="tel:+584144008240">0414-4008240</a></p>
