@@ -695,8 +695,7 @@
 <section class="phone-section">
     <div class="phone-container">
         <div class="phone-screen">
-            <img src="https://i0.wp.com/fundaciondavidbrandt.org/wp-content/uploads/2025/08/db252b5c-6c2f-48cf-9dfd-e95f6ea498b9.webp?w=800&ssl=1" alt="Una Llamada, Una Vida">
-        </div>
+<img src="/fundacion-webbanners05.png" alt="Una Llamada, Una Vida">        </div>
         <div class="phone-text">
             <h3>Una Llamada, Una Vida</h3>
             <p>¡Una llamada puede hacer la diferencia!</p>
@@ -707,8 +706,7 @@
 
 <!-- Contact Section -->
 <section class="contact-section">
-    <h2 class="section-title">Tu espacio de seguridad</h2>
-    <h3 class="text-center mb-4">Contáctanos</h3>
+    <h2 class="section-title">Contáctanos</h2>
     <p class="text-center mb-4">Estas son las diferentes plataformas de contacto para obtener más información:</p>
     
     <div class="contact-grid">

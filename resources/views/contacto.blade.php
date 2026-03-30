@@ -273,7 +273,7 @@
             <i class="fas fa-phone-alt"></i> 0414-4265181 (Una llamada una vida)
         </div>
          <div class="phone">
-            <i class="fas fa-phone-alt"></i> 0424-47695900 (Una llmada una vida)
+            <i class="fas fa-phone-alt"></i> 0424-47695900 (Una llamada una vida)
         </div>
         <a href="https://wa.me/584144265181?text=Hola%20necesito%20ayuda%20urgente" class="btn btn-primary">
             <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
