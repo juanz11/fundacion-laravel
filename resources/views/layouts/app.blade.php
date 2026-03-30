@@ -419,8 +419,10 @@
             <div>
                 <h3>Contacto</h3>
                 <p><i class="fas fa-envelope"></i> fundabl25@fundaciondavidbrandt.org</p>
-                <p><i class="fas fa-phone"></i> 0414-4265181 (Una llmada una Vida)</p>
-                 <p><i class="fas fa-phone"></i> 0424-7695900 (Una llmada una Vida)</p>
+                      <p> fundavidbrandtlasaballett@gmail.com</p>
+                                      <p> <strong>Una llamada una Vida</strong></p>
+                <p><i class="fas fa-phone"></i> 0414-4265181 </p>
+                 <p><i class="fas fa-phone"></i> 0424-7695900 </p>
 
                 <p><i class="fas fa-phone"></i> 0414-4008240 (Información)</p>
             </div>
