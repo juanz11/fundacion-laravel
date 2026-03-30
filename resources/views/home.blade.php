@@ -685,7 +685,9 @@
     <p>Conectamos a las personas con recursos y redes de apoyo, fomentando una comunidad más fuerte orientada hacia la sanación. Juntos, podemos crear un entorno de apoyo y comprensión.</p>
     <div class="btn-group">
         <a href="https://wa.me/584144008240?text=Hola%20necesito%20mas%20informacion" class="btn btn-primary">Contáctanos</a>
-        <a href="https://wa.me/584144008240?text=Hola%20necesito%20mas%20informacion" class="btn btn-secondary">¡Haz tu donación hoy!</a>
+        <a href="https://wa.me/584144008240?text=Hola%20necesito%20mas%20informacion" class="btn btn-secondary" style="
+    background-color: #724FC7;
+">¡Haz tu donación hoy!</a>
     </div>
 </section>
 
