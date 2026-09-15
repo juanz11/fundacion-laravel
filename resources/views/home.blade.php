@@ -586,6 +586,372 @@
             padding: 1.5rem;
         }
     }
+
+    /* Statistics Section */
+    .stats-section {
+        padding: 5rem 2rem;
+        background: linear-gradient(135deg, #012E67 0%, #0a4fa3 100%);
+        color: white;
+    }
+
+    .stats-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .stats-header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .stats-header h2 {
+        font-size: 2.5rem;
+        margin-bottom: 0.75rem;
+        font-weight: 700;
+    }
+
+    .stats-header p {
+        font-size: 1.1rem;
+        opacity: 0.9;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+    }
+
+    .stat-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        padding: 2rem;
+        text-align: center;
+        transition: transform 0.3s, background 0.3s;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-6px);
+        background: rgba(255, 255, 255, 0.15);
+    }
+
+    .stat-icon {
+        width: 56px;
+        height: 56px;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+        font-size: 1.5rem;
+    }
+
+    .stat-value {
+        font-size: 2.4rem;
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+        line-height: 1.2;
+    }
+
+    .stat-label {
+        font-size: 0.95rem;
+        opacity: 0.85;
+        font-weight: 500;
+    }
+
+    .stat-change {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        margin-top: 0.75rem;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #7ee787;
+        background: rgba(126, 231, 135, 0.15);
+        padding: 0.35rem 0.75rem;
+        border-radius: 999px;
+    }
+
+    .stat-change i {
+        font-size: 0.75rem;
+    }
+
+    .stats-charts {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+    }
+
+    .chart-card {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 16px;
+        padding: 1.5rem;
+    }
+
+    .chart-card h3 {
+        font-size: 1.2rem;
+        margin-bottom: 1.25rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .chart-bars {
+        display: flex;
+        align-items: flex-end;
+        gap: 1rem;
+        height: 220px;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        position: relative;
+    }
+
+    .chart-bar-wrapper {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        height: 100%;
+    }
+
+    .chart-bar {
+        width: 100%;
+        max-width: 48px;
+        background: linear-gradient(180deg, #64b5f6 0%, #1e88e5 100%);
+        border-radius: 6px 6px 0 0;
+        position: relative;
+        transition: height 1.2s ease-out;
+        height: 0;
+    }
+
+    .chart-bar.growth {
+        background: linear-gradient(180deg, #81c784 0%, #43a047 100%);
+    }
+
+    .chart-bar-value {
+        position: absolute;
+        top: -24px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 0.8rem;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+
+    .chart-bar-label {
+        position: absolute;
+        bottom: -28px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 0.8rem;
+        opacity: 0.9;
+        white-space: nowrap;
+    }
+
+    .frequency-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .frequency-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .frequency-label {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.9rem;
+    }
+
+    .frequency-track {
+        height: 10px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 999px;
+        overflow: hidden;
+    }
+
+    .frequency-fill {
+        height: 100%;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #4fc3f7 0%, #29b6f6 100%);
+        width: 0;
+        transition: width 1.2s ease-out;
+    }
+
+    .frequency-fill.regular {
+        background: linear-gradient(90deg, #aed581 0%, #7cb342 100%);
+    }
+
+    .frequency-fill.growth {
+        background: linear-gradient(90deg, #ffb74d 0%, #fb8c00 100%);
+    }
+
+    @media (max-width: 768px) {
+        .stats-section {
+            padding: 3rem 1.5rem;
+        }
+
+        .stats-header h2 {
+            font-size: 1.75rem;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+        }
+
+        .stats-charts {
+            grid-template-columns: 1fr;
+        }
+
+        .chart-bars {
+            height: 180px;
+        }
+    }
+
+    /* Copa Índigo Legacy Section */
+    .legacy-section {
+        --gold: #d4af37;
+        background: linear-gradient(160deg, #0a0a0f 0%, #14141f 50%, #0d0d16 100%);
+        color: #e8e8ec;
+        padding: 5rem 2rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .legacy-section::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 800px;
+        height: 800px;
+        background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+        pointer-events: none;
+    }
+
+    .legacy-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 3rem;
+        align-items: center;
+        position: relative;
+    }
+
+    .legacy-flyer img {
+        width: 100%;
+        border-radius: 16px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(212, 175, 55, 0.25);
+        display: block;
+    }
+
+    .legacy-content {
+        text-align: center;
+    }
+
+    .section-tag {
+        color: var(--gold);
+        font-size: 0.9rem;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+    }
+
+    .legacy-content .section-title {
+        color: #fff;
+        font-size: 2.4rem;
+    }
+
+    .legacy-content .accent {
+        color: var(--gold);
+    }
+
+    .legacy-content blockquote {
+        font-size: 1.15rem;
+        font-style: italic;
+        line-height: 1.7;
+        color: #c9c9d4;
+        border-left: 3px solid var(--gold);
+        padding-left: 1.25rem;
+        margin: 0 auto 1.5rem;
+        max-width: 520px;
+        text-align: left;
+    }
+
+    .legacy-name {
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: var(--gold);
+        letter-spacing: 3px;
+        margin-bottom: 0.25rem;
+    }
+
+    .legacy-sub {
+        font-size: 0.95rem;
+        color: #9a9aa8;
+    }
+
+    .legacy-cta {
+        display: inline-block;
+        margin-top: 2rem;
+        background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+        color: #0a0a0f;
+        padding: 1rem 2.5rem;
+        border-radius: 999px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 1.1rem;
+        letter-spacing: 0.5px;
+        transition: transform 0.3s, box-shadow 0.3s;
+        box-shadow: 0 8px 25px rgba(212, 175, 55, 0.35);
+    }
+
+    .legacy-cta:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 35px rgba(212, 175, 55, 0.5);
+    }
+
+    .legacy-cta i {
+        margin-right: 0.5rem;
+    }
+
+    @media (max-width: 968px) {
+        .legacy-inner {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .legacy-flyer {
+            max-width: 420px;
+            margin: 0 auto;
+        }
+
+        .legacy-content .section-title {
+            font-size: 1.8rem;
+        }
+
+        .legacy-content blockquote {
+            text-align: center;
+            border-left: none;
+            border-top: 3px solid var(--gold);
+            padding-left: 0;
+            padding-top: 1.25rem;
+        }
+    }
 </style>
 @endsection
 
@@ -611,6 +977,106 @@
             <button type="button" class="hero-dot" aria-label="Banner 2" data-slide="1"></button>
             <button type="button" class="hero-dot" aria-label="Banner 3" data-slide="2"></button>
             <button type="button" class="hero-dot" aria-label="Banner 4" data-slide="3"></button>
+        </div>
+    </div>
+</section>
+
+<!-- Statistics Section -->
+<section class="stats-section" id="statsSection">
+    <div class="stats-container">
+        <div class="stats-header">
+            <h2>Nuestro Impacto</h2>
+            <p>Cifras que reflejan nuestro compromiso con el bienestar emocional de la comunidad.</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-phone-alt"></i>
+                </div>
+                <div class="stat-value" data-count="1306" data-suffix="">0</div>
+                <div class="stat-label">Llamadas atendidas</div>
+                <span class="stat-change">
+                    <i class="fas fa-calendar"></i> Nov 2025 – Ago 2026
+                </span>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-hand-holding-heart"></i>
+                </div>
+                <div class="stat-value" data-count="1000" data-suffix="">0</div>
+                <div class="stat-label">Atenciones psicológicas presenciales</div>
+                <span class="stat-change">
+                    <i class="fas fa-calendar"></i> Desde nov 2025
+                </span>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="stat-value" data-count="130.6" data-suffix="" data-decimals="1">0</div>
+                <div class="stat-label">Promedio mensual de llamadas</div>
+                <span class="stat-change">
+                    <i class="fas fa-phone-volume"></i> En 10 meses
+                </span>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-value" data-count="2306" data-suffix="+">0</div>
+                <div class="stat-label">Total de atenciones</div>
+                <span class="stat-change">
+                    <i class="fas fa-heart"></i> Llamadas + presencial
+                </span>
+            </div>
+        </div>
+
+        <div class="stats-charts">
+            <div class="chart-card">
+                <h3><i class="fas fa-chart-bar"></i> Atenciones por modalidad</h3>
+                <div class="chart-bars" id="annualChart">
+                    <div class="chart-bar-wrapper">
+                        <div class="chart-bar" data-height="100" data-value="1,306">
+                            <span class="chart-bar-value">1,306</span>
+                            <span class="chart-bar-label">Llamadas</span>
+                        </div>
+                    </div>
+                    <div class="chart-bar-wrapper">
+                        <div class="chart-bar growth" data-height="77" data-value="1,000">
+                            <span class="chart-bar-value">1,000</span>
+                            <span class="chart-bar-label">Presencial</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <h3><i class="fas fa-chart-pie"></i> Distribución de atenciones</h3>
+                <div class="frequency-list">
+                    <div class="frequency-item">
+                        <div class="frequency-label">
+                            <span>Llamadas telefónicas</span>
+                            <span>57%</span>
+                        </div>
+                        <div class="frequency-track">
+                            <div class="frequency-fill" data-width="57"></div>
+                        </div>
+                    </div>
+                    <div class="frequency-item">
+                        <div class="frequency-label">
+                            <span>Atención presencial</span>
+                            <span>43%</span>
+                        </div>
+                        <div class="frequency-track">
+                            <div class="frequency-fill regular" data-width="43"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -700,6 +1166,33 @@
             <h3>Una Llamada, Una Vida</h3>
             <p>¡Una llamada puede hacer la diferencia!</p>
             <p>Nuestro programa «Una Llamada, Una Vida» ofrece primeros auxilios psicológicos, una herramienta fundamental para brindar apoyo emocional inmediato a quienes lo necesitan.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Copa Índigo Legacy Section -->
+<section class="legacy-section">
+    <div class="legacy-inner">
+        <div class="legacy-flyer">
+            <img src="{{ asset('IMG_1185.PNG') }}" alt="Flyer Copa Índigo MMA — David Brandt">
+        </div>
+        <div class="legacy-content">
+            <p class="section-tag">💙 En su memoria</p>
+            <h2 class="section-title" style="margin-bottom:1.5rem; line-height:1.2;">Un homenaje que<br><span class="accent">trasciende el deporte.</span></h2>
+            <blockquote>
+                Más que un luchador, fue un guerrero que vivió las MMA con el alma. Este evento es para él, por él y gracias a todo lo que nos enseñó dentro y fuera del octágono.
+            </blockquote>
+            <p class="legacy-name">DAVID BRANDT</p>
+            <p class="legacy-sub">El Índigo · Siempre en nuestros corazones 🕊️</p>
+            <a href="https://copaindigomma.fundaciondavidbrandt.org/" target="_blank" rel="noopener" class="legacy-cta">
+                <i class="fas fa-ticket-alt"></i> Comprar Entradas
+            </a>
+            <div style="margin-top:2rem; display:flex; gap:0.5rem; flex-wrap:nowrap; justify-content:center; overflow-x:auto; padding-bottom:0.25rem;">
+                <span style="background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.3);color:var(--gold);padding:0.4rem 1rem;border-radius:999px;font-size:0.8rem;font-weight:600;white-space:nowrap;">#CopaÍndigoMMA</span>
+                <span style="background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.3);color:var(--gold);padding:0.4rem 1rem;border-radius:999px;font-size:0.8rem;font-weight:600;white-space:nowrap;">#DavidBrandt</span>
+                <span style="background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.3);color:var(--gold);padding:0.4rem 1rem;border-radius:999px;font-size:0.8rem;font-weight:600;white-space:nowrap;">#FundaciónDavidBrandt</span>
+                <span style="background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.3);color:var(--gold);padding:0.4rem 1rem;border-radius:999px;font-size:0.8rem;font-weight:600;white-space:nowrap;">#SNCPHARMA</span>
+            </div>
         </div>
     </div>
 </section>
@@ -1198,5 +1691,68 @@
     @if(session('success'))
         openEventModal();
     @endif
+
+    // Statistics animations
+    document.addEventListener('DOMContentLoaded', function() {
+        const statSection = document.getElementById('statsSection');
+        const statValues = document.querySelectorAll('.stat-value');
+        const chartBars = document.querySelectorAll('.chart-bar');
+        const frequencyFills = document.querySelectorAll('.frequency-fill');
+        let animated = false;
+
+        function animateStats() {
+            if (animated) return;
+            animated = true;
+
+            statValues.forEach(function(el) {
+                const target = parseFloat(el.getAttribute('data-count'));
+                const suffix = el.getAttribute('data-suffix') || '';
+                const decimals = parseInt(el.getAttribute('data-decimals')) || 0;
+                const duration = 1500;
+                const start = performance.now();
+
+                function update(now) {
+                    const progress = Math.min((now - start) / duration, 1);
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    const current = target * eased;
+                    el.textContent = current.toFixed(decimals).replace(/\B(?=(\d{3})+(?!\d))/g, '.') + suffix;
+                    if (progress < 1) {
+                        requestAnimationFrame(update);
+                    }
+                }
+
+                requestAnimationFrame(update);
+            });
+
+            chartBars.forEach(function(bar, index) {
+                setTimeout(function() {
+                    const height = bar.getAttribute('data-height');
+                    bar.style.height = height + '%';
+                }, index * 120);
+            });
+
+            frequencyFills.forEach(function(fill, index) {
+                setTimeout(function() {
+                    const width = fill.getAttribute('data-width');
+                    fill.style.width = width + '%';
+                }, 200 + index * 150);
+            });
+        }
+
+        if (statSection) {
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        animateStats();
+                        observer.unobserve(statSection);
+                    }
+                });
+            }, { threshold: 0.25 });
+
+            observer.observe(statSection);
+        } else {
+            animateStats();
+        }
+    });
 </script>
 @endsection

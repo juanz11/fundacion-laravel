@@ -244,6 +244,140 @@
             grid-template-columns: 1fr;
         }
     }
+
+    /* Copa Índigo Legacy Section */
+    .legacy-section {
+        --gold: #d4af37;
+        background: linear-gradient(160deg, #0a0a0f 0%, #14141f 50%, #0d0d16 100%);
+        color: #e8e8ec;
+        padding: 5rem 2rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .legacy-section::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 800px;
+        height: 800px;
+        background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+        pointer-events: none;
+    }
+
+    .legacy-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 3rem;
+        align-items: center;
+        position: relative;
+    }
+
+    .legacy-flyer img {
+        width: 100%;
+        border-radius: 16px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(212, 175, 55, 0.25);
+        display: block;
+    }
+
+    .legacy-content {
+        text-align: center;
+    }
+
+    .section-tag {
+        color: var(--gold);
+        font-size: 0.9rem;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+    }
+
+    .legacy-content .section-title {
+        color: #fff;
+        font-size: 2.4rem;
+    }
+
+    .legacy-content .accent {
+        color: var(--gold);
+    }
+
+    .legacy-content blockquote {
+        font-size: 1.15rem;
+        font-style: italic;
+        line-height: 1.7;
+        color: #c9c9d4;
+        border-left: 3px solid var(--gold);
+        padding-left: 1.25rem;
+        margin: 0 auto 1.5rem;
+        max-width: 520px;
+        text-align: left;
+    }
+
+    .legacy-name {
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: var(--gold);
+        letter-spacing: 3px;
+        margin-bottom: 0.25rem;
+    }
+
+    .legacy-sub {
+        font-size: 0.95rem;
+        color: #9a9aa8;
+    }
+
+    .legacy-cta {
+        display: inline-block;
+        margin-top: 2rem;
+        background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+        color: #0a0a0f;
+        padding: 1rem 2.5rem;
+        border-radius: 999px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 1.1rem;
+        letter-spacing: 0.5px;
+        transition: transform 0.3s, box-shadow 0.3s;
+        box-shadow: 0 8px 25px rgba(212, 175, 55, 0.35);
+    }
+
+    .legacy-cta:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 35px rgba(212, 175, 55, 0.5);
+    }
+
+    .legacy-cta i {
+        margin-right: 0.5rem;
+    }
+
+    @media (max-width: 968px) {
+        .legacy-inner {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .legacy-flyer {
+            max-width: 420px;
+            margin: 0 auto;
+        }
+
+        .legacy-content .section-title {
+            font-size: 1.8rem;
+        }
+
+        .legacy-content blockquote {
+            text-align: center;
+            border-left: none;
+            border-top: 3px solid var(--gold);
+            padding-left: 0;
+            padding-top: 1.25rem;
+        }
+    }
 </style>
 @endsection
 
@@ -252,6 +386,33 @@
 <section class="eventos-hero">
     <h1>Nuestros Eventos</h1>
     <p>Únete a nuestras actividades y forma parte del cambio</p>
+</section>
+
+<!-- Copa Índigo Legacy Section -->
+<section class="legacy-section">
+    <div class="legacy-inner">
+        <div class="legacy-flyer">
+            <img src="{{ asset('IMG_1185.PNG') }}" alt="Flyer Copa Índigo MMA — David Brandt">
+        </div>
+        <div class="legacy-content">
+            <p class="section-tag">💙 En su memoria</p>
+            <h2 class="section-title" style="margin-bottom:1.5rem; line-height:1.2;">Un homenaje que<br><span class="accent">trasciende el deporte.</span></h2>
+            <blockquote>
+                Más que un luchador, fue un guerrero que vivió las MMA con el alma. Este evento es para él, por él y gracias a todo lo que nos enseñó dentro y fuera del octágono.
+            </blockquote>
+            <p class="legacy-name">DAVID BRANDT</p>
+            <p class="legacy-sub">El Índigo · Siempre en nuestros corazones 🕊️</p>
+            <a href="https://copaindigomma.fundaciondavidbrandt.org/" target="_blank" rel="noopener" class="legacy-cta">
+                <i class="fas fa-ticket-alt"></i> Comprar Entradas
+            </a>
+            <div style="margin-top:2rem; display:flex; gap:0.5rem; flex-wrap:nowrap; justify-content:center; overflow-x:auto; padding-bottom:0.25rem;">
+                <span style="background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.3);color:var(--gold);padding:0.4rem 1rem;border-radius:999px;font-size:0.8rem;font-weight:600;white-space:nowrap;">#CopaÍndigoMMA</span>
+                <span style="background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.3);color:var(--gold);padding:0.4rem 1rem;border-radius:999px;font-size:0.8rem;font-weight:600;white-space:nowrap;">#DavidBrandt</span>
+                <span style="background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.3);color:var(--gold);padding:0.4rem 1rem;border-radius:999px;font-size:0.8rem;font-weight:600;white-space:nowrap;">#FundaciónDavidBrandt</span>
+                <span style="background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.3);color:var(--gold);padding:0.4rem 1rem;border-radius:999px;font-size:0.8rem;font-weight:600;white-space:nowrap;">#SNCPHARMA</span>
+            </div>
+        </div>
+    </div>
 </section>
 
 <!-- Eventos Container -->
