@@ -330,6 +330,69 @@
             }
         }
 
+        /* Lazo conmemorativo flotante: amarillo en septiembre, verde lima en octubre */
+        .ribbon-badge {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 9998;
+            display: inline-flex;
+            text-decoration: none;
+            animation: ribbonFloat 3.5s ease-in-out infinite;
+            transition: transform 0.3s, filter 0.3s;
+        }
+
+        .ribbon-badge:hover {
+            transform: translateY(-5px) scale(1.08);
+        }
+
+        .ribbon-badge .ribbon-icon {
+            font-size: 3.4rem;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .ribbon-badge--yellow {
+            filter: drop-shadow(0 6px 14px rgba(249, 168, 37, 0.55));
+        }
+
+        .ribbon-badge--yellow:hover {
+            filter: drop-shadow(0 10px 20px rgba(249, 168, 37, 0.75));
+        }
+
+        .ribbon-badge--yellow .ribbon-icon {
+            background-image: linear-gradient(160deg, #FFF59D 0%, #FDD835 45%, #F9A825 100%);
+        }
+
+        .ribbon-badge--lime {
+            filter: drop-shadow(0 6px 14px rgba(175, 180, 43, 0.55));
+        }
+
+        .ribbon-badge--lime:hover {
+            filter: drop-shadow(0 10px 20px rgba(175, 180, 43, 0.75));
+        }
+
+        .ribbon-badge--lime .ribbon-icon {
+            background-image: linear-gradient(160deg, #F0F4C3 0%, #CDDC39 45%, #827717 100%);
+        }
+
+        @keyframes ribbonFloat {
+            0%, 100% { transform: translateY(0) rotate(-3deg); }
+            50% { transform: translateY(-7px) rotate(3deg); }
+        }
+
+        @media (max-width: 640px) {
+            .ribbon-badge {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .ribbon-badge .ribbon-icon {
+                font-size: 2.6rem;
+            }
+        }
+
         /* Utility Classes */
         .container {
             max-width: 1200px;
@@ -442,6 +505,17 @@
             </div>
         </div>
     </footer>
+
+    {{-- Lazo visible solo en septiembre (amarillo) y octubre (verde lima) --}}
+    @if(now()->month === 9)
+    <a href="{{ url('/programas#prevencion') }}" class="ribbon-badge ribbon-badge--yellow" aria-label="Septiembre Amarillo - Mes de la prevención del suicidio" title="Septiembre Amarillo - Mes de la prevención del suicidio">
+        <i class="fas fa-ribbon ribbon-icon"></i>
+    </a>
+    @elseif(now()->month === 10)
+    <a href="{{ url('/programas#prevencion') }}" class="ribbon-badge ribbon-badge--lime" aria-label="Octubre Verde Lima" title="Octubre Verde Lima">
+        <i class="fas fa-ribbon ribbon-icon"></i>
+    </a>
+    @endif
 
     @yield('scripts')
     

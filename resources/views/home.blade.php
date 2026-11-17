@@ -1174,7 +1174,7 @@
 <section class="legacy-section">
     <div class="legacy-inner">
         <div class="legacy-flyer">
-            <img src="{{ asset('IMG_1185.PNG') }}" alt="Flyer Copa Índigo MMA — David Brandt">
+            <img src="{{ asset('IMG_1185.png') }}" alt="Flyer Copa Índigo MMA — David Brandt">
         </div>
         <div class="legacy-content">
             <p class="section-tag">💙 En su memoria</p>
