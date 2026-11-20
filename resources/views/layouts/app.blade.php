@@ -421,7 +421,7 @@
         <div class="header-container">
             <div class="logo">
                 <a href="{{ url('/') }}">
-                    <img src="https://i0.wp.com/fundaciondavidbrandt.org/wp-content/uploads/2025/07/ISOTIPO-scaled.png?fit=2560%2C2560&ssl=1" alt="Fundación David Brandt">
+                    <img src="{{ asset('731249.png') }}" alt="Fundación David Brandt">
                 </a>
             </div>
             

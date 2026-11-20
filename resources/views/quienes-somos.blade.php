@@ -293,92 +293,20 @@
     <h2>FUNDACIÓN DAVID BRANDT LASABALLETT</h2>
     
     <h3>Semillas de esperanza: una Gala por el futuro de Venezuela</h3>
-    
-    <p>
-        Una llamada una vida: La Fundación David Brandt Lasaballett Lidera la Prevención, Atención y Postvención del suicidio en Venezuela.
-    </p>
 
     <p>
-        En un país donde la salud mental enfrenta desafíos sin precedentes, la FUNDACION DAVID BRANDT LASABALLETT emerge como una organización pionera, dedicada a salvar vidas y ofrecer esperanza a miles de venezolanos desde la niñez hasta la adultez mayor. 
+        En un país donde la salud mental enfrenta desafíos sin precedentes, la FUNDACIÓN DAVID BRANDT LASABALLETT emerge como una organización pionera, dedicada a salvar vidas y ofrecer esperanza a miles de venezolanos desde la niñez hasta la adultez mayor.
         Lamentablemente, el suicidio se ha convertido en una silenciosa emergencia de salud pública, por lo que la fundación emerge como un faro de luz, de acción y acompañamiento. Esta fundación tiene varios objetivos claros: La prevención, que se traduce en salvar vidas a través de diferentes medios y programas, a contener este fenómeno y finalmente a acompañar a quienes atraviesan el duelo.
     </p>
+
+    <p>
+        Somos una entidad sin fines de lucro, dedicada a la prevención integral del suicidio, con asistencia compasiva y la enseñanza de la educación psicoemocional presente en todas las etapas evolutivas del ser humano.
+    </p>
+
+    <p>
+        Somos la organización líder de referencia nacional en la reducción significativa de la conducta suicida en Venezuela, reconocida por su impacto positivo y la excelencia de sus programas de prevención, intervención y postvención.
+    </p>
     
-    <h3>¿Por qué es urgente nuestra causa?</h3>
-    <p>
-        Según el Observatorio Venezolano de violencia, durante el año 2024, dentro del país acontecieron unas 1962 muertes por suicidio, lo que arroja una tasa de 6,9 decesos por cada 100 mil habitantes. En promedio, estados como Mérida, Táchira, Distrito Capital, Trujillo y Lara lideran estas cifras, mientras la depresión figura como la causa principal en el 86,1% de los casos. Detrás de cada número hay historias, familias y comunidades marcadas por el dolor y la urgencia de actuar.
-    </p>
-
-    <p>
-        Contamos con un equipo multidisciplinario (psicólogos, psiquiatras, médicos, abogados, comunicadores y voluntarios) que trabajamos dirigidos a la realización de charlas, talleres, conferencias y campañas en diferentes áreas de la salud mental y de la gestión emocional, así como las dirigidas a sensibilización a la población en general sobre el suicidio, desmitificando las creencias y los tabúes que lo acompañan.
-    </p>
-
-    <p>
-        Desarrollarán en las escuelas, liceos, universidades, comunidades, y también a través de medios de comunicación y redes sociales las labores tendientes a la contención del suicidio, a través de la línea telefónica de atención inmediata las llamadas que realizan las personas que necesiten ayuda, atendidas por profesionales de la salud mental, altamente capacitados y sensibilizados en el tema, con la finalidad de contener cualquier situación.
-    </p>
-
-    <h3>Planes y Programas de Postvención</h3>
-    <p>
-        Referido al acompañamiento especializado a sobrevivientes (familias y allegados), ofreciendo espacios de escucha, grupos de apoyo y recursos para afrontar el duelo, dirigidos por profesionales.
-    </p>
-
-    <h3>Planes de Formación</h3>
-    <p>
-        Dirigidos a crear espacios de capacitación de profesionales de la salud, educación, voluntarios y líderes comunitarios, con la finalidad de detectar señales de alerta y actuar oportunamente ante cualquier señal de alerta.
-    </p>
-
-    <h3>Conectando con la esperanza</h3>
-    <p>
-        En un entorno saturado de información, contaremos historias reales de superación, visibilizaremos testimonios de quienes han encontrado apoyo y esperanza, para de esta manera, generar solidaridad y redes de apoyo, que tanta falta hacen en la humanidad. 
-        Cada vida salvada es una victoria sobre el silencio; hablar es prevenir; acompañar a sanar.
-    </p>
-
-    <p>
-        La fundación David Brandt basa sus principios sobre la alquimia y la resiliencia, que no son más que preceptos que eluden la transformación emocional y mental de las situaciones dolorosas a circunstancias favorecedoras, de crecimiento y superación emocional, mediante el establecimiento de una nueva y liberadora percepción, que nos ofrecen una nueva oportunidad de cambiar y de vivir, que es lo que realmente nos importa.
-    </p>
-
-    <p>
-        La fundación abre sus puertas a todos los ciudadanos, tanto de Venezuela como del mundo, a sus nuevos miembros, a los voluntarios, colaboradores, sponsors y donantes, que deseen ser parte activa de este único y novedoso movimiento transformador, que defiende el valor de simplemente vivir. En este sentido, su apoyo es vital para expandir nuestras acciones, para llegar a más comunidades y sostener programas de prevención, atención y postvención en todo el país.
-    </p>
-
-    <h3>Nuestra Misión</h3>
-    <ul>
-        <li>Salvar vidas y ofrecer esperanza a través de la prevención integral del suicidio y el apoyo compasivo a personas afectadas en Venezuela, mediante programas educativos, asistencia especializada y la promoción de un entorno social sensible y solidario.</li>
-    </ul>
-
-    <h3>Nuestra Visión</h3>
-    <p>
-        Ser la organización líder y referente nacional e internacional en la reducción significativa de la conducta suicida, reconocida por el impacto positivo de sus proyectos y programas, la excelencia profesional y la construcción de una sociedad informada, resiliente y protectora de la salud mental.
-    </p>
-
-    <h3>Nuestros Valores</h3>
-    <ul>
-        <li><strong>Derechos Humanos:</strong> Respeto absoluto por la dignidad y los derechos de todas las personas.</li>
-        <li><strong>Solidaridad:</strong> Compromiso activo con quienes sufren y sus familias.</li>
-        <li><strong>Transparencia:</strong> Rendición de cuentas clara y abierta.</li>
-        <li><strong>Empatía:</strong> Comprensión profunda y respuesta sensible.</li>
-        <li><strong>Profesionalismo:</strong> Competencia y ética en cada intervención.</li>
-        <li><strong>Colaboración:</strong> Alianzas estratégicas para maximizar el impacto.</li>
-        <li><strong>Innovación:</strong> Búsqueda constante de nuevas soluciones.</li>
-    </ul>
-
-    <h3>¿Qué nos diferencia?</h3>
-    <p>
-        Tenemos un enfoque Integral: Ya que abordamos la conducta suicida desde la prevención primaria hasta la postvención especializada, cubriendo todas las etapas de este fenómeno.
-    </p>
-
-    <ul>
-        <li>Contamos con alianzas multidisciplinarias: Colaboramos con profesionales de la salud, educadores, líderes comunitarios y sectores clave.</li>
-        <li>Atención centrada en la persona y la familia: Apoyo individualizado y sensible a cada situación.</li>
-        <li>Uso estratégico de la tecnología: Contamos con plataformas digitales y líneas de ayuda accesibles y confidenciales.</li>
-        <li>Investigación y formación: Promovemos estudios sobre suicidio y capacitamos a profesionales y comunidades.</li>
-    </ul>
-
-    <h3>¿Cómo puedes ayudar?</h3>
-    <ul>
-        <li>Únete como miembro voluntario o profesional, aquí tienes un espacio.</li>
-        <li>Conviértete en sponsor y asocia tu marca a una causa de alto impacto social.</li>
-        <li>Dona y permite que más personas reciban ayuda gratuita y oportuna.</li>
-    </ul>
 
     <div class="btn-contact-section">
         <a href="https://wa.me/584144008240?text=Hola%20necesito%20mas%20informacion">Ver Más</a>
@@ -392,12 +320,12 @@
         <div class="carousel-slide" id="carouselSlide">
             <div class="director-card">
                 <img src="https://i0.wp.com/fundaciondavidbrandt.org/wp-content/uploads/2025/08/WhatsApp-Image-2025-08-22-at-6.31.23-PM-8.webp?w=800&ssl=1" alt="Presidenta">
-                <h3>Masiel Lasaballlet</h3>
+                <h3>Masiel Lasaballet</h3>
                 <p>Presidenta de la Fundación David Brandt</p>
             </div>
             <div class="director-card">
                 <img src="https://i0.wp.com/fundaciondavidbrandt.org/wp-content/uploads/2025/08/WhatsApp-Image-2025-08-22-at-6.31.23-PM-9.jpeg?w=800&ssl=1" alt="Vicepresidente">
-                <h3>Julio César Brandt Lasaballlet</h3>
+                <h3>Julio César Brandt Lasaballet</h3>
                 <p>Vicepresidente de la Fundación David Brandt</p>
             </div>
             <div class="director-card">
@@ -412,7 +340,7 @@
             </div>
             <div class="director-card">
                 <img src="https://i0.wp.com/fundaciondavidbrandt.org/wp-content/uploads/2025/08/WhatsApp-Image-2025-08-22-at-6.31.23-PM-7.webp?w=800&ssl=1" alt="Secretaria">
-                <h3>María Consuelo De Bianchi</h3>
+                <h3>María Consuelo</h3>
                 <p>Secretaria</p>
             </div>
             <div class="director-card">
